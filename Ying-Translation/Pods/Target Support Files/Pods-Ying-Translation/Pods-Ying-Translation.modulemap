@@ -1,0 +1,6 @@
+framework module Pods_Ying_Translation {
+  umbrella header "Pods-Ying-Translation-umbrella.h"
+
+  export *
+  module * { export * }
+}
