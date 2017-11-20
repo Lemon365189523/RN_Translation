@@ -1,24 +1,24 @@
 import React from 'react';
-import { 
+import {
     View,
     Text
- } from "react-native";
+} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 
 class MainContainer extends React.Component {
     static navigationOptions = {
-        title: '翻译',
+        title: '生词本',
         tabBarIcon: ({ tintColor }) => (
-            <Icon name="ios-home" size={25} color={tintColor} />
+            <Icon name="ios-create" size={25} color={tintColor} />
         )
     };
 
-    render(){
-        return(
+    render() {
+        return (
             <View>
-                <Text>MainContainer</Text>
-                
+                <Text>生词本</Text>
+
             </View>
         )
     }

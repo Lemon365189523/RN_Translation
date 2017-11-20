@@ -1,10 +1,12 @@
 import { StackNavigator, TabNavigator } from "react-navigation";
 import MainContainer from "./MainContainer";
+import NewWordContainer from './NewWordContainer';
 
 
 const TabContainer = TabNavigator(
     {
-        Main: { screen: MainContainer }
+        Main: { screen: MainContainer },
+        NewWord: { screen: NewWordContainer}
     },
     {
         lazy: true,
