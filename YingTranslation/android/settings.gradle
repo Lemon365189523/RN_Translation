@@ -1,0 +1,3 @@
+rootProject.name = 'YingTranslation'
+
+include ':app'
