@@ -5,11 +5,11 @@ import thunk from 'redux-thunk';
 import reducers from '../reducers/index';
 
 //添加中间件
-// const middlewares = [];
-// middlewares.push(thunk);
+const middlewares = [];
+middlewares.push(thunk);
 
 //配置store信息
-let createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+let createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 
 let store = createStoreWithMiddleware(reducers);
 

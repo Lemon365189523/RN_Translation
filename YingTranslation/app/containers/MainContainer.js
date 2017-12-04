@@ -29,7 +29,6 @@ class MainContainer extends React.Component {
 
 //过滤state
 const mapStateToProps = (state) => {
-    console.log(state);
     const { main } = state;
     
     return {
@@ -39,10 +38,11 @@ const mapStateToProps = (state) => {
 
 //过滤action
 const mapDispatchToProps = (dispatch) => {
-    const translateAction = bindActionCreators(translateCreators, dispatch);
+    const mainDispatch = bindActionCreators(translateCreators, dispatch);
     return {
-        translateAction
+        mainDispatch
     };
 };
 
+//连接reducer和action
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

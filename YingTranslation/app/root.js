@@ -14,7 +14,7 @@ import CodePush from 'react-native-code-push';
 
 //android-staging r9g2x1Fb_1sx8tmM7KSRa3AA7cja3e570e6d-1756-4fea-ac2a-83ad60454c8e
 //ios-staging   1lX9t67WozG8DjDE0Az1QzZa7FpL3e570e6d-1756-4fea-ac2a-83ad60454c8e
-const deploymentKey = "r9g2x1Fb_1sx8tmM7KSRa3AA7cja3e570e6d-1756-4fea-ac2a-83ad60454c8e";
+const deploymentKey = "1lX9t67WozG8DjDE0Az1QzZa7FpL3e570e6d-1756-4fea-ac2a-83ad60454c8e";
 // const Root = () => (
     // <Provider store={store}>
     //     <App />
@@ -23,6 +23,10 @@ const deploymentKey = "r9g2x1Fb_1sx8tmM7KSRa3AA7cja3e570e6d-1756-4fea-ac2a-83ad6
 class Root extends Component {
 
     componentDidMount(){
+        // this._cheakUpdate();
+    }
+    
+    _cheakUpdate(){
         CodePush.checkForUpdate(deploymentKey).then((update) => {
             if (!update) {
                 Alert.alert("提示", "已是最新版本--", [
