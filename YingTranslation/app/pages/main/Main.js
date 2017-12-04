@@ -3,6 +3,8 @@ import {
     View,
     TextInput,
     StyleSheet,
+    ScrollView,
+    Text
 } from 'react-native';
 
 import YTButton from '../../components/YTButton';
@@ -20,12 +22,27 @@ class MainPage extends Component {
         const {mainDispatch} = this.props;
         mainDispatch.translate(this.state.text);
     }
+
     _textOnChange(text){
         this.setState({
             text: text
         })
     }
+
+    _renderGridView(){
+        const { main } = this.props;
+        
+        if (main.data.query === undefined) return null;
+
+        return (
+            <View>
+                <Text> {main.data.query} </Text>
+            </View>
+        );
+    };
+
     render(){
+      
         return (
             <View>
                 <TextInput 
@@ -40,6 +57,9 @@ class MainPage extends Component {
                     color='red'
                     textColor = '#ffff'
                 />
+                <View>
+                    {this._renderGridView()}
+                </View>
             </View>
         )
     }
@@ -58,7 +78,7 @@ const styles = StyleSheet.create({
     },
     translateBtn: {
         height: 44,
-        marginTop: 40,
+        marginTop: 20,
         marginLeft:20,
         marginRight:20,
         backgroundColor: 'red'

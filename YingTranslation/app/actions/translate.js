@@ -12,6 +12,7 @@
 import {POST} from '../constants/Networking';
 import { YOUDAO_HTTPS } from "../constants/Urls";
 import MD5 from "crypto-js/md5";
+import * as Types from '../constants/ActionTypes';
 
 export let translate = (word) => {
     var q = word;
@@ -29,16 +30,80 @@ export let translate = (word) => {
         "salt": salt,
         "appKey": appkey
     };
-    console.log(params);
-    return dispatch => {
-      
-        POST(YOUDAO_HTTPS, params)
-            .then((resJson)=>{
-                console.log(resJson);
-            }).catch((err)=>{
-                console.log(err.message);
-            })
 
+    return dispatch => {
+        dispatch({
+            type: Types.REQUEST_START
+        })
+        // POST(YOUDAO_HTTPS, params)
+        //     .then((resJson)=>{
+        //         console.log(resJson);
+        //     }).catch((err)=>{
+        //         console.log(err.message);
+        //     });
+        setTimeout(() => {
+            dispatch({
+                type: Types.REQUEST_SUCCESS,
+                data: data
+            })
+        }, 2000);
     }
 
 }
+
+
+ const data = {
+    "web": [
+        {
+            "value": [
+                "测试",
+                "测验",
+                "检验"
+            ],
+            "key": "Test"
+        },
+        {
+            "value": [
+                "Test Drive",
+                "Test Drive",
+                "无限狂飙"
+            ],
+            "key": "Test Drive"
+        },
+        {
+            "value": [
+                "测试员",
+                "测试工程师",
+                "软件测试工程师"
+            ],
+            "key": "Test Engineer"
+        }
+    ],
+    "query": "test",
+    "translation": [
+        "试验"
+    ],
+    "errorCode": "0",
+    "dict": {
+        "url": "yddict://m.youdao.com/dict?le=eng&q=test"
+    },
+    "webdict": {
+        "url": "http://m.youdao.com/dict?le=eng&q=test"
+    },
+    "basic": {
+        "us-phonetic": "tɛst",
+        "phonetic": "test",
+        "uk-phonetic": "test",
+        "speech": "test&type=1",
+        "uk-speech": "test&type=1",
+        "us-speech": "test&type=2",
+        "explains": [
+            "n. 试验；检验",
+            "vt. 试验；测试",
+            "vi. 试验；测试",
+            "n. (Test)人名；(英)特斯特"
+        ]
+    },
+    "l": "EN2zh-CHS"
+}
+ 
