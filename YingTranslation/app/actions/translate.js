@@ -46,7 +46,7 @@ export let translate = (word) => {
                 type: Types.REQUEST_SUCCESS,
                 data: data
             })
-        }, 2000);
+        }, 0);
     }
 
 }
