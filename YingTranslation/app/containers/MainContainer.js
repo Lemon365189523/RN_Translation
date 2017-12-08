@@ -9,6 +9,7 @@ import MainPage from '../pages/main/Main'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as translateCreators from '../actions/translate';
+import SplashScreen from 'react-native-splash-screen';
 
 class MainContainer extends React.Component {
     static navigationOptions = {
@@ -17,6 +18,10 @@ class MainContainer extends React.Component {
             <Icon name="ios-home" size={25} color={tintColor} />
         )
     };
+
+    componentDidMount(){
+        SplashScreen.hide();
+    }
 
     render(){
         return(
