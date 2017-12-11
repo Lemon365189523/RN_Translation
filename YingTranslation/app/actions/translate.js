@@ -14,7 +14,7 @@ import { YOUDAO_HTTPS } from "../constants/Urls";
 import MD5 from "crypto-js/md5";
 import * as Types from '../constants/ActionTypes';
 
-export let translate = (word) => {
+export const translate = (word) => {
     var q = word;
     var f = "EN";
     var to = "zh-CHS";
@@ -41,15 +41,28 @@ export let translate = (word) => {
         //     }).catch((err)=>{
         //         console.log(err.message);
         //     });
-        setTimeout(() => {
+        
+        //查询是否有收藏
+        global.storage.load({
+            key: data.query
+        }).then(ret => {
+            console.log('该单词有收藏');
+            data.mark = true;
             dispatch({
                 type: Types.REQUEST_SUCCESS,
                 data: data
             })
-        }, 0);
+        }).catch(err => {
+            console.log('该单词没有收藏');
+            data.mark = false;
+            dispatch({
+                type: Types.REQUEST_SUCCESS,
+                data: data
+            })
+        });
+        
     }
-
-}
+};
 
 
  const data = {

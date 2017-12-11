@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
     View,
-    Text
+    Text,
+    StatusBar
  } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 import MainPage from '../pages/main/Main'
@@ -9,7 +10,9 @@ import MainPage from '../pages/main/Main'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as translateCreators from '../actions/translate';
+import * as wrodsHandleCreators from '../actions/wordsHandle';
 import SplashScreen from 'react-native-splash-screen';
+import { THEME_BG_COLOR } from '../constants/Colors';
 
 class MainContainer extends React.Component {
     static navigationOptions = {
@@ -26,6 +29,10 @@ class MainContainer extends React.Component {
     render(){
         return(
             <View>
+                <StatusBar
+                    backgroundColor={THEME_BG_COLOR}
+                    barStyle="light-content"
+                />
                 <MainPage {...this.props}/>
             </View>
         )
@@ -34,18 +41,21 @@ class MainContainer extends React.Component {
 
 //过滤state
 const mapStateToProps = (state) => {
-    const { main } = state;
+    const { main , words } = state;
     
     return {
-        main
+        main,
+        words
     };
 };
 
 //过滤action
 const mapDispatchToProps = (dispatch) => {
     const mainDispatch = bindActionCreators(translateCreators, dispatch);
+    const wordsHandleDispatch = bindActionCreators(wrodsHandleCreators, dispatch);
     return {
-        mainDispatch
+        mainDispatch,
+        wordsHandleDispatch
     };
 };
 

@@ -1,7 +1,7 @@
 import { StackNavigator, TabNavigator } from "react-navigation";
 import MainContainer from "./MainContainer";
 import NewWordContainer from './NewWordContainer';
-
+import {THEME_BG_COLOR} from '../constants/Colors';
 
 const TabContainer = TabNavigator(
     {
@@ -12,7 +12,7 @@ const TabContainer = TabNavigator(
         lazy: true,
         tabBarPosition: 'bottom',
         tabBarOptions: {
-            activeTintColor: '#3e9ce9',
+            activeTintColor: THEME_BG_COLOR,
             inactiveTintColor: '#999999',
             showIcon: true,
             style: {
@@ -34,8 +34,16 @@ const App = StackNavigator(
         Home: {
             screen: TabContainer,
             navigationOptions: {
-                headerLeft: null
-            }
+                headerLeft: null,
+                headerStyle: {
+                    backgroundColor: THEME_BG_COLOR,
+                },
+                headerTitleStyle:{
+                    alignSelf: 'center'
+                },
+                headerTintColor: '#ffff'
+            },
+
         }
     }
 )

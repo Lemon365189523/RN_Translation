@@ -4,8 +4,11 @@ import {
     TextInput,
     StyleSheet,
     ScrollView,
-    Text
+    Text,
+    TouchableOpacity
 } from 'react-native';
+import {THEME_LIGHT_BG_COLOR, THEME_BG_COLOR} from '../../constants/Colors';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import YTButton from '../../components/YTButton';
 
@@ -29,6 +32,17 @@ class MainPage extends Component {
         })
     }
 
+    _textInputOnSubmitEditing(e){
+        const { mainDispatch } = this.props;
+        mainDispatch.translate(this.state.text);
+    }
+
+    _onCilckMarkBtn(data){
+        const { wordsHandleDispatch } = this.props;
+        wordsHandleDispatch.collectionWord(data.query, data);
+    }
+
+// renders 
     _renderQueryView(){
         const { main } = this.props;
         if (main.data.query === undefined) return null;
@@ -38,6 +52,9 @@ class MainPage extends Component {
                 <Text style={styles.queryViewText}> 
                     {main.data.query} 
                 </Text>
+                <TouchableOpacity onPress={()=>this._onCilckMarkBtn(main.data)}>
+                     <Icon name="ios-bookmark-outline" size={25} color={THEME_BG_COLOR} />
+                </TouchableOpacity>
             </View>
         );
     };
@@ -86,19 +103,21 @@ class MainPage extends Component {
     }
 
     render(){
-      
+
         return (
             <View>
                 <TextInput 
                     style={[styles.textInput, styles.margins]}
                     multiline={true}
                     onChangeText={(text)=>this._textOnChange(text)}
+                    underlineColorAndroid="transparent"
+                    blurOnSubmit={true}
+                    onSubmitEditing={this._textInputOnSubmitEditing.bind(this)}
                 /> 
                 <YTButton 
                     title="翻译"
                     style={[styles.translateBtn, styles.margins]}
                     onPress={this._onClick.bind(this)}
-                    color='red'
                     textColor = '#ffff'
                 />
                 <ScrollView 
@@ -124,19 +143,23 @@ const styles = StyleSheet.create({
     textInput : {
         marginTop: 20,
         height: 100,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        textAlignVertical: 'top'
     },
     translateBtn: {
         height: 44,
         marginTop: 20,
-        backgroundColor: 'red'
+        backgroundColor: THEME_LIGHT_BG_COLOR
     },
     scrollView:{
         marginTop: 20,
     },
     queryView:{
         backgroundColor: '#ffff',
-        padding: 10
+        padding: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent:'space-between'
     },
     queryViewText:{
         fontFamily: 'Cochin',

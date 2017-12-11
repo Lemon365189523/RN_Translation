@@ -9,7 +9,7 @@ import React ,{Component} from 'react';
 export default class YTButton extends Component{
 
     render(){
-        const {style, title, onPress, textColor} = this.props;
+        const {style, title, onPress, textColor } = this.props;
         return (
             <TouchableOpacity 
                 style={[styles.touchable,style]} 

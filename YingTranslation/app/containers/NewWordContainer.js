@@ -4,9 +4,12 @@ import {
     Text
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
+import * as wrodsHandleCreators from '../actions/wordsHandle';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import WordsPage from "../pages/words/WordsPage";
 
-
-class MainContainer extends React.Component {
+class WordsContainer extends React.Component {
     static navigationOptions = {
         title: '生词本',
         tabBarIcon: ({ tintColor }) => (
@@ -17,11 +20,27 @@ class MainContainer extends React.Component {
     render() {
         return (
             <View>
-                <Text>生词本</Text>
-
+                <WordsPage  {...this.props}/>
             </View>
         )
     }
 }
+//过滤state
+const mapStateToProps = (state) => {
+    const { words } = state;
 
-export default MainContainer;
+    return {
+        words
+    };
+};
+
+//过滤action
+const mapDispatchToProps = (dispatch) => {
+    const wordsHandleDispatch = bindActionCreators(wrodsHandleCreators, dispatch);
+    return {
+        wordsHandleDispatch
+    }
+};
+
+ 
+export default connect(mapStateToProps, mapDispatchToProps)(WordsContainer);

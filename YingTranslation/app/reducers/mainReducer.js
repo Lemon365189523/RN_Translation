@@ -4,7 +4,6 @@ import * as Types from "../constants/ActionTypes";
 let initialState = {
     data: {},
     isLoading: false,
-
 }
 
 let mainReducer = (state = initialState, action) => {
@@ -17,7 +16,7 @@ let mainReducer = (state = initialState, action) => {
             break;
         
         case Types.REQUEST_SUCCESS:
-            console.log(action.data);
+            
             return {
                 isLoading: false,
                 data: action.data
