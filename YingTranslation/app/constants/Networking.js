@@ -11,18 +11,19 @@ export default function request(method, url, body) {
             formData.append(key, value);
         });
         body = formData;
+       
     }
 
     return fetch(url, 
         {
             method: method,
             headers: {
-                // 定义content为json 如果是文本，Content-Type="text/plain"
-                'Content-Type': 'application/json',
+                // 定义content为json 如果是文本，Content-Type="text/plain" multipart/form-data
+                'Content-Type': 'multipart/form-data',
                 'Accept': 'application/json',
                 timeout: 20 * 1000,
             },
-            body:body ,
+            body: body ,
         })
         .then((res) => {
             return res.json();

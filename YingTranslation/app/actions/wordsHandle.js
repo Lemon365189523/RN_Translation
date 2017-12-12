@@ -1,15 +1,14 @@
 import * as Types from '../constants/ActionTypes';
 
-const collectionID = '10086';
+const collectionKey = 'WordsStorageKey';
 
 
 export const collectionWord = (word, data) => {
-    console.log(word);
-    console.log(data);
+
     return dispatch =>{
         global.storage.save({
-            key: word,
-            id: collectionID,
+            key: collectionKey,
+            id: word,
             data: data
         }).then(() => {
             console.log('收藏成功');
@@ -22,25 +21,24 @@ export const collectionWord = (word, data) => {
     
 }
 
-export const findAllCollectionWord = () =>{
+export const findAllCollectionWords = () =>{
 
     return dispatch => {
-        global.storage.load(
-            {key: 'test'}
-        ).then(wrods => {
-            console.log('获取所有收藏单词成功');
-            console.log(words);
-            // dispatch({
-            //     type: Types.GET_ALL_COLLECTION_WORDS,
-            //     words: wrods
-            // });
+        global.storage.getAllDataForKey(
+            collectionKey
+        ).then(ret => {
+
+            dispatch({
+                type: Types.GET_ALL_COLLECTION_WORDS,
+                words: ret
+            });
         }).catch(err => {
-            console.log('获取所有收藏单词失败');
-            console.log(err);
-            // dispatch({
-            //     type: Types.GET_ALL_COLLECTION_WORDS,
-            //     words: []
-            // })
+            console.warn(err.message);
+            dispatch({
+                type: Types.GET_ALL_COLLECTION_WORDS,
+                words: []
+            })
         });
     }
 }
+

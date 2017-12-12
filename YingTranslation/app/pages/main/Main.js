@@ -46,14 +46,14 @@ class MainPage extends Component {
     _renderQueryView(){
         const { main } = this.props;
         if (main.data.query === undefined) return null;
-
+        const iconName = main.data.mark ? "ios-bookmark" : "ios-bookmark-outline" ;
         return (
             <View style={styles.queryView}>
                 <Text style={styles.queryViewText}> 
                     {main.data.query} 
                 </Text>
                 <TouchableOpacity onPress={()=>this._onCilckMarkBtn(main.data)}>
-                     <Icon name="ios-bookmark-outline" size={25} color={THEME_BG_COLOR} />
+                     <Icon name={iconName} size={25} color={THEME_BG_COLOR} />
                 </TouchableOpacity>
             </View>
         );
