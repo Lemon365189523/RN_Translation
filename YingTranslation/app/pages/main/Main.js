@@ -5,12 +5,13 @@ import {
     StyleSheet,
     ScrollView,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    Image,
 } from 'react-native';
 import {THEME_LIGHT_BG_COLOR, THEME_BG_COLOR} from '../../constants/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
-
 import YTButton from '../../components/YTButton';
+import ImgSource from '../../img';
 
 class MainPage extends Component {
 
@@ -43,6 +44,23 @@ class MainPage extends Component {
     }
 
 // renders 
+    _renderLanguageView(){
+
+        return (
+            <View style={styles.languageView}>
+                <TouchableOpacity title="to" onPress={()=>{}} style={styles.languageButton}>
+                    <Text style={{color:'#ffff'}}>to</Text>
+                    <Icon name={"md-arrow-dropdown"} size={10} color={"#ffff"}/>
+                </TouchableOpacity>
+                <Image source={ImgSource.translation} style={styles.changleLogo} resizeMode="cover"/>
+                <TouchableOpacity style={styles.languageButton}> 
+                    <Text style={{ color: '#ffff' }}>from </Text>
+                    <Icon name={"md-arrow-dropdown"} size={10} color={"#ffff"} />
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
     _renderQueryView(){
         const { main } = this.props;
         if (main.data.query === undefined) return null;
@@ -106,6 +124,7 @@ class MainPage extends Component {
 
         return (
             <View>
+                {this._renderLanguageView()}
                 <TextInput 
                     style={[styles.textInput, styles.margins]}
                     multiline={true}
@@ -141,7 +160,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
     textInput : {
-        marginTop: 20,
+        marginTop: 10,
         height: 100,
         backgroundColor: '#ffffff',
         textAlignVertical: 'top'
@@ -159,7 +178,7 @@ const styles = StyleSheet.create({
         padding: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'space-between'
+        justifyContent:'space-around'
     },
     queryViewText:{
         fontFamily: 'Cochin',
@@ -180,5 +199,21 @@ const styles = StyleSheet.create({
         marginTop: 10,
         padding: 10
     },
-
+    languageView:{
+        flexDirection: 'row',
+        backgroundColor: THEME_BG_COLOR,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 30
+    },
+    changleLogo:{
+        width: 20,
+        height: 20
+    },
+    languageButton:{
+        width: 100,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 })

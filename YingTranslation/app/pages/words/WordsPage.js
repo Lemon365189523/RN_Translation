@@ -19,8 +19,8 @@ class WordsPage extends Component {
         return key;
     }
     
-    _onClickItem(){
-
+    _onClickItem(word){
+        this.props.navigation.navigate('Details',{title:word.query, info:word});
     }
 
     // render 
@@ -32,7 +32,7 @@ class WordsPage extends Component {
                 style={styles.itemView} 
                 activeOpacity={0.8}
                 key={item.index}
-                onPress={this._onClickItem.bind(this)}
+                onPress={()=>this._onClickItem(word)}
             >
                 <Text style={styles.itemText}> {word.query}</Text>
                 <Text style={styles.itemText2}>[ {word.translation} ]</Text>
