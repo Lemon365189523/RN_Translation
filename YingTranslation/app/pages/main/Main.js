@@ -12,14 +12,23 @@ import {THEME_LIGHT_BG_COLOR, THEME_BG_COLOR} from '../../constants/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import YTButton from '../../components/YTButton';
 import ImgSource from '../../img';
+import YTLoadingView from '../../components/YTLoadingView';
+import YTDropdown from '../../components/YTDropdown';
+
+const SELECT_TO = 99;
+const SELECT_FROM = 100;
 
 class MainPage extends Component {
 
     constructor(props){
         super(props);
         this.state={
-            text: ''
+            text: '',
+            to : '中文',
+            from : '英文'
         }
+        this.drowdown;
+        this.currentSelect = 0;
     }
 
     _onClick(){
@@ -43,18 +52,49 @@ class MainPage extends Component {
         wordsHandleDispatch.collectionWord(data.query, data);
     }
 
-// renders 
+    _onCliclToBtn(){
+        this.currentSelect = SELECT_TO;
+        this.drowdown.show();
+    }
+
+    _onClickFromBtn(){
+        this.currentSelect = SELECT_FROM;
+        this.drowdown.show();
+    }
+
+    _changleLange(index){
+        switch (this.currentSelect) {
+            case SELECT_TO:
+                this.setState({to:data[index]})
+                break;
+            case SELECT_FROM:
+                this.setState({ from: data[index] })
+                break;
+            default:
+                break;
+        }
+    }
+
+/**
+ * ================== render ========================================================
+ */
     _renderLanguageView(){
 
         return (
-            <View style={styles.languageView}>
-                <TouchableOpacity title="to" onPress={()=>{}} style={styles.languageButton}>
-                    <Text style={{color:'#ffff'}}>to</Text>
+            <View style={styles.languageView} >
+                <TouchableOpacity 
+                    style={styles.languageButton} 
+                    onPress={this._onCliclToBtn.bind(this)} 
+                >
+                    <Text style={{color:'#ffff'}}>{this.state.to}</Text>
                     <Icon name={"md-arrow-dropdown"} size={10} color={"#ffff"}/>
                 </TouchableOpacity>
                 <Image source={ImgSource.translation} style={styles.changleLogo} resizeMode="cover"/>
-                <TouchableOpacity style={styles.languageButton}> 
-                    <Text style={{ color: '#ffff' }}>from </Text>
+                <TouchableOpacity 
+                    style={styles.languageButton} 
+                    onPress={this._onClickFromBtn.bind(this)}
+                > 
+                    <Text style={{ color: '#ffff' }}>{this.state.from}</Text>
                     <Icon name={"md-arrow-dropdown"} size={10} color={"#ffff"} />
                 </TouchableOpacity>
             </View>
@@ -146,6 +186,12 @@ class MainPage extends Component {
                     {this._renderBasicView()}
                     {this._renderWebView()}
                 </ScrollView>
+                <YTLoadingView visible={false}/>
+                <YTDropdown 
+                    ref={(drowdown)=>{this.drowdown = drowdown}}
+                    data={data}
+                    selectIndex={this._changleLange.bind(this)}
+                />
             </View>
         )
     }
@@ -153,6 +199,17 @@ class MainPage extends Component {
 }
 
 export default MainPage;
+
+const data = [
+    "中文",
+    "英文",
+    "日语",
+    "韩文",
+    "法文",
+    "俄文",
+    "葡萄牙文",
+    "西班牙文"
+]
 
 const styles = StyleSheet.create({
     margins :{
