@@ -4,7 +4,7 @@ import {
     Text
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
-import * as wrodsHandleCreators from '../actions/wordsHandle';
+import * as wrodsCreators from '../actions/wordsAction';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import WordsPage from "../pages/words/WordsPage";
@@ -36,9 +36,9 @@ const mapStateToProps = (state) => {
 
 //过滤action
 const mapDispatchToProps = (dispatch) => {
-    const wordsHandleDispatch = bindActionCreators(wrodsHandleCreators, dispatch);
+    const wordsDispatch = bindActionCreators(wrodsCreators, dispatch);
     return {
-        wordsHandleDispatch
+        wordsDispatch
     }
 };
 

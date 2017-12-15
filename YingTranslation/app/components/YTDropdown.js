@@ -6,7 +6,8 @@ import {
     Dimensions,
     FlatList,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    PanResponder
 } from 'react-native';
 import * as Colors from '../constants/Colors';
 
@@ -18,25 +19,52 @@ export default class YTDropdown extends Component {
     constructor(props){
         super(props);
         this.state = {
-            height: new Animated.Value(0)
+            height: new Animated.Value(0),
+            showView: false,
+            index: -1
         }
+        this._panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: this._handleOnStartShouldSetPanResponder.bind(this),
+            onPanResponderRelease: this._handleOnPanResponderEnd.bind(this),
+        })
+        this.isShow = false;
     }
 
-    show(){        
+    _handleOnStartShouldSetPanResponder(evt, gestureState){
+        return true;
+    }
+
+    _handleOnPanResponderEnd(evt, gestureState){
+        this.hide();
+        this.props.selectIndex(99);
+    }
+
+    show(){   
+        this.isShow = true;
+        this.setState({
+            showView :true
+        });
         Animated.timing(this.state.height,{
             toValue: this.props.data.length * 40 ,
             duration: 300
         }).start();
+        
     }
 
     hide(){
+        this.isShow = false;
+        this.setState({
+            showView: false
+        });
         Animated.timing(this.state.height, {
             toValue: 0,
             duration: 300
         }).start();
+       
     }
 
     _onClickItem(item){
+        this.setState({index: item.index});
         this.hide();
         this.props.selectIndex(item.index);
     }
@@ -44,7 +72,7 @@ export default class YTDropdown extends Component {
     _renderItem(item){
         return (
             <TouchableOpacity 
-                style={styles.item} 
+                style={[styles.item]} 
                 activeOpacity={0.8}
                 onPress={()=>this._onClickItem(item)}
             >
@@ -59,10 +87,12 @@ export default class YTDropdown extends Component {
 
     render(){
 
-        const {data} = this.props;
-        const showClose = this.state.height>0;
+        const {data,} = this.props;
         return(
-            <View style={styles.bgContainer} >
+            <View 
+                style={[styles.bgContainer,{height: this.state.showView?W_Height: 0}]} 
+                {...this._panResponder.panHandlers}
+            >
                 <Animated.View style={[styles.dropdownView, {height:this.state.height}]}>
                     <FlatList 
                         data = {data}
@@ -81,7 +111,7 @@ const styles = StyleSheet.create({
     bgContainer: { 
         position: 'absolute',
         top: 30, 
-        backgroundColor: 'rgba(0,0,0,0.5)'
+        backgroundColor: 'rgba(0,0,0,0.2)'
     },
     dropdownView:{
         backgroundColor: "#ffff",
@@ -92,7 +122,7 @@ const styles = StyleSheet.create({
         width: W_Width,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: Colors.THEME_BG_COLOR,
+        backgroundColor: Colors.THEME_BG_COLOR
     },
     itemText:{
         color: '#ffff'

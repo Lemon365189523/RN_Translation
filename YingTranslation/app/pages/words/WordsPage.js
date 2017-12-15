@@ -4,17 +4,25 @@ import {
     FlatList,
     Text,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    DeviceEventEmitter
 } from 'react-native';
 
 
 class WordsPage extends Component {
 
     componentDidMount(){
-        const {  wordsHandleDispatch} = this.props;
-        wordsHandleDispatch.findAllCollectionWords();
+        const {  wordsDispatch} = this.props;
+        wordsDispatch.findAllCollectionWords();
+        this.subscription = DeviceEventEmitter.addListener('WordsPageUpdate', ()=>{
+            wordsDispatch.findAllCollectionWords();
+        } );
     }
     
+    componentWillUnmount(){
+        this.subscription.remove();
+    }
+
     _keyExtractors(item,key){
         return key;
     }
@@ -25,7 +33,7 @@ class WordsPage extends Component {
 
     // render 
     _renderItem(item){
-        console.log(item);
+        
         const word = item.item;
         return (
             <TouchableOpacity 
@@ -49,6 +57,7 @@ class WordsPage extends Component {
                     data={words.collectionWords}
                     renderItem={this._renderItem.bind(this)}
                     keyExtractor={this._keyExtractors.bind(this) }
+                    bounces={false}
                 />
             </View>
         )

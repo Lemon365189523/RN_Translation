@@ -7,6 +7,8 @@ import {
     Text,
     TouchableOpacity,
     Image,
+    Keyboard,
+    Alert
 } from 'react-native';
 import {THEME_LIGHT_BG_COLOR, THEME_BG_COLOR} from '../../constants/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -25,15 +27,26 @@ class MainPage extends Component {
         this.state={
             text: '',
             to : '中文',
-            from : '英文'
+            from : '英文',
+            setNeedRefresh : 0,
+            inputOnFocus: false
         }
         this.drowdown;
         this.currentSelect = 0;
     }
 
-    _onClick(){
+    _onTranslate(){
         const {mainDispatch} = this.props;
-        mainDispatch.translate(this.state.text);
+        const fromIndex = data.indexOf(this.state.from);
+        const toIndex = data.indexOf(this.state.to);
+        const codings = ["zh-CHS", "ja", "EN", "ko", "fr", "ru", "pt", "es"]
+        const fromCoding = codings[fromIndex];
+        const toCoding = codings[toIndex];
+        mainDispatch.translate(this.state.text,toCoding, fromCoding);
+        this.setState({
+            inputOnFocus: false
+        })
+        Keyboard.dismiss();
     }
 
     _textOnChange(text){
@@ -48,27 +61,79 @@ class MainPage extends Component {
     }
 
     _onCilckMarkBtn(data){
-        const { wordsHandleDispatch } = this.props;
-        wordsHandleDispatch.collectionWord(data.query, data);
+        const {mainDispatch} = this.props;
+        if (data.mark) {
+            Alert.alert(
+                "是否取消收藏",
+                null,
+                [
+                    {text:'取消'},
+                    { text: '确认' , 
+                        onPress:() => { 
+                            mainDispatch.removeWord(data)
+                        }
+                    }
+                ]
+            )
+        }else{
+            mainDispatch.markWord(data);
+        }
+        
     }
 
     _onCliclToBtn(){
+        
+        if (!this.drowdown.isShow){    
+            this.drowdown.show();
+        } else if (this.currentSelect == SELECT_TO && this.drowdown.isShow){
+            this.drowdown.hide();
+        }
         this.currentSelect = SELECT_TO;
-        this.drowdown.show();
+        this.setState({setNeedRefresh: this.state.setNeedRefresh++})
     }
 
     _onClickFromBtn(){
+        
+        if (!this.drowdown.isShow) {
+            this.drowdown.show();
+        } else if (this.currentSelect == SELECT_FROM && this.drowdown.isShow){
+            this.drowdown.hide();
+        }
         this.currentSelect = SELECT_FROM;
-        this.drowdown.show();
+        this.setState({ setNeedRefresh: this.state.setNeedRefresh++ })
     }
 
     _changleLange(index){
+        if (index == 99) {
+            this.setState({ setNeedRefresh: this.state.setNeedRefresh++ })
+            return;
+        }
         switch (this.currentSelect) {
             case SELECT_TO:
-                this.setState({to:data[index]})
+                if (data[index] == this.state.from ){
+                    this.setState((state)=>{
+                        return {
+                            to: state.from,
+                            from: state.to
+                        }
+                    })
+                }else{
+                    this.setState({ to: data[index] })
+                }
+               
                 break;
             case SELECT_FROM:
-                this.setState({ from: data[index] })
+                if (data[index] == this.state.to){
+                    this.setState((state) => {
+                        return {
+                            to: state.from,
+                            from: state.to
+                        }
+                    })
+                }else{
+                    this.setState({ from: data[index] })
+                }
+                
                 break;
             default:
                 break;
@@ -79,23 +144,31 @@ class MainPage extends Component {
  * ================== render ========================================================
  */
     _renderLanguageView(){
-
+        //上md-arrow-dropup 下md-arrow-dropdown
         return (
             <View style={styles.languageView} >
                 <TouchableOpacity 
                     style={styles.languageButton} 
-                    onPress={this._onCliclToBtn.bind(this)} 
+                    onPress={this._onClickFromBtn.bind(this)} 
                 >
-                    <Text style={{color:'#ffff'}}>{this.state.to}</Text>
-                    <Icon name={"md-arrow-dropdown"} size={10} color={"#ffff"}/>
+                    <Text style={{color:'#ffff'}}>{this.state.from}</Text>
+                    <Icon 
+                        name={(this.currentSelect == SELECT_FROM && this.drowdown.isShow) ? "md-arrow-dropup" :"md-arrow-dropdown"} 
+                        size={15} 
+                        color={"#ffff"}
+                    />
                 </TouchableOpacity>
                 <Image source={ImgSource.translation} style={styles.changleLogo} resizeMode="cover"/>
                 <TouchableOpacity 
                     style={styles.languageButton} 
-                    onPress={this._onClickFromBtn.bind(this)}
+                    onPress={this._onCliclToBtn.bind(this)}
                 > 
-                    <Text style={{ color: '#ffff' }}>{this.state.from}</Text>
-                    <Icon name={"md-arrow-dropdown"} size={10} color={"#ffff"} />
+                    <Text style={{ color: '#ffff' }}>{this.state.to}</Text>
+                    <Icon 
+                        name={(this.currentSelect == SELECT_TO && this.drowdown.isShow) ? "md-arrow-dropup" : "md-arrow-dropdown"} 
+                        size={15} 
+                        color={"#ffff"} 
+                    />
                 </TouchableOpacity>
             </View>
         )
@@ -108,7 +181,7 @@ class MainPage extends Component {
         return (
             <View style={styles.queryView}>
                 <Text style={styles.queryViewText}> 
-                    {main.data.query} 
+                    {main.data.translation[0]} 
                 </Text>
                 <TouchableOpacity onPress={()=>this._onCilckMarkBtn(main.data)}>
                      <Icon name={iconName} size={25} color={THEME_BG_COLOR} />
@@ -148,11 +221,11 @@ class MainPage extends Component {
         if (web.length <= 0) return null;
         return(
             <View style={styles.webView}>
-                <Text>网络释意</Text>
+                <Text style={{marginBottom:5}}>网络释意</Text>
                 {web.map((item,key)=>{
                     return (
                         <View key={key}>
-
+                            <Text> {item.key}</Text>
                         </View>
                     )
                 })}
@@ -161,7 +234,6 @@ class MainPage extends Component {
     }
 
     render(){
-
         return (
             <View>
                 {this._renderLanguageView()}
@@ -171,16 +243,18 @@ class MainPage extends Component {
                     onChangeText={(text)=>this._textOnChange(text)}
                     underlineColorAndroid="transparent"
                     blurOnSubmit={true}
-                    onSubmitEditing={this._textInputOnSubmitEditing.bind(this)}
+                    onSubmitEditing={this._onTranslate.bind(this)}
+                    blurOnSubmit={true}
                 /> 
                 <YTButton 
                     title="翻译"
                     style={[styles.translateBtn, styles.margins]}
-                    onPress={this._onClick.bind(this)}
+                    onPress={this._onTranslate.bind(this)}
                     textColor = '#ffff'
                 />
                 <ScrollView 
                     style = {[styles.margins, styles.scrollView]}
+                    bounces={false}
                 >
                     {this._renderQueryView()}
                     {this._renderBasicView()}
@@ -202,8 +276,8 @@ export default MainPage;
 
 const data = [
     "中文",
-    "英文",
     "日语",
+    "英文",
     "韩文",
     "法文",
     "俄文",
@@ -235,7 +309,7 @@ const styles = StyleSheet.create({
         padding: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'space-around'
+        justifyContent:'space-between'
     },
     queryViewText:{
         fontFamily: 'Cochin',

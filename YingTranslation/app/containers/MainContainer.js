@@ -9,8 +9,7 @@ import MainPage from '../pages/main/Main'
 //链接reducer
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as translateCreators from '../actions/translate';
-import * as wrodsHandleCreators from '../actions/wordsHandle';
+import * as mainCreators from '../actions/mainAction';
 import SplashScreen from 'react-native-splash-screen';
 import { THEME_BG_COLOR } from '../constants/Colors';
 
@@ -41,21 +40,18 @@ class MainContainer extends React.Component {
 
 //过滤state
 const mapStateToProps = (state) => {
-    const { main , words } = state;
+    const { main  } = state;
     
     return {
         main,
-        words
     };
 };
 
 //过滤action
 const mapDispatchToProps = (dispatch) => {
-    const mainDispatch = bindActionCreators(translateCreators, dispatch);
-    const wordsHandleDispatch = bindActionCreators(wrodsHandleCreators, dispatch);
+    const mainDispatch = bindActionCreators(mainCreators, dispatch);
     return {
         mainDispatch,
-        wordsHandleDispatch
     };
 };
 
