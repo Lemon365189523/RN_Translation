@@ -1,6 +1,9 @@
 import * as Types from '../constants/ActionTypes';
 
 import * as WordsStorage from "../constants/WordsStorage";
+import {
+    DeviceEventEmitter
+} from 'react-native';
 
 export const findAllCollectionWords = () =>{
 
@@ -20,3 +23,19 @@ export const findAllCollectionWords = () =>{
     }
 }
 
+export const removeWord = (word) => {
+    
+    return dispatch => {
+        WordsStorage.removeWord(
+            word
+        ).then(() => {
+            dispatch({
+                type: Types.REMOVE_WORD_SUCCESS,
+            });
+            DeviceEventEmitter.emit('WordsPageUpdate');
+            DeviceEventEmitter.emit('RemoveWord',word);
+        }).catch(err => {
+
+        });
+    }
+}

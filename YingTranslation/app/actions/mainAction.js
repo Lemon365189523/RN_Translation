@@ -113,3 +113,13 @@ export const removeWord = (word) => {
         });
     }
 }
+
+export const removeMark = (word) =>{
+    return dispatch => {
+        word.mark = false;
+        dispatch({
+            type: Types.REQUEST_SUCCESS,
+            data: word
+        });
+    }
+}

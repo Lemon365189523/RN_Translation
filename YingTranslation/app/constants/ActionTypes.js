@@ -9,4 +9,4 @@ export const REQUEST_START = "requestStart";
 
 //收藏功能
 export const GET_ALL_COLLECTION_WORDS = "GetAllConllectionWords";
-
+export const REMOVE_WORD_SUCCESS = "RemoveWordSuccess";

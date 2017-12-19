@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     Image,
     Keyboard,
-    Alert
+    Alert,
+    DeviceEventEmitter
 } from 'react-native';
 import {THEME_LIGHT_BG_COLOR, THEME_BG_COLOR} from '../../constants/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -16,6 +17,9 @@ import YTButton from '../../components/YTButton';
 import ImgSource from '../../img';
 import YTLoadingView from '../../components/YTLoadingView';
 import YTDropdown from '../../components/YTDropdown';
+import YTSpringView from '../../components/YTSpringView';
+import {scaleSize} from '../../constants/ScreenUtil';
+import YTToast from '../../components/YTToast';
 
 const SELECT_TO = 99;
 const SELECT_FROM = 100;
@@ -35,14 +39,35 @@ class MainPage extends Component {
         this.currentSelect = 0;
     }
 
+    componentDidMount(){
+       
+        this.subscription = DeviceEventEmitter.addListener('RemoveWord', (word) => {
+            const { mainDispatch, main } = this.props;
+            if (main.data.query === word.query) {
+                console.log('mainPage remove word');
+                mainDispatch.removeMark(main.data);
+            }
+            
+        });
+    }
+
+    componentWillUnmount(){
+        this.subscription.remove();
+    }
+
     _onTranslate(){
-        const {mainDispatch} = this.props;
-        const fromIndex = data.indexOf(this.state.from);
-        const toIndex = data.indexOf(this.state.to);
-        const codings = ["zh-CHS", "ja", "EN", "ko", "fr", "ru", "pt", "es"]
-        const fromCoding = codings[fromIndex];
-        const toCoding = codings[toIndex];
-        mainDispatch.translate(this.state.text,toCoding, fromCoding);
+        if (this.state.text.match(/^[ ]*$/)){
+            this.toast.show("请输入单词",2000);
+        }else{
+            const { mainDispatch } = this.props;
+            const fromIndex = data.indexOf(this.state.from);
+            const toIndex = data.indexOf(this.state.to);
+            const codings = ["zh-CHS", "ja", "EN", "ko", "fr", "ru", "pt", "es"]
+            const fromCoding = codings[fromIndex];
+            const toCoding = codings[toIndex];
+            mainDispatch.translate(this.state.text, toCoding, fromCoding);
+
+        }
         this.setState({
             inputOnFocus: false
         })
@@ -224,9 +249,11 @@ class MainPage extends Component {
                 <Text style={{marginBottom:5}}>网络释意</Text>
                 {web.map((item,key)=>{
                     return (
-                        <View key={key}>
-                            <Text> {item.key}</Text>
-                        </View>
+                        <YTSpringView
+                            title={item.key}
+                            key={key}
+                            subTitles={item.value}
+                        />
                     )
                 })}
             </View>
@@ -266,6 +293,9 @@ class MainPage extends Component {
                     data={data}
                     selectIndex={this._changleLange.bind(this)}
                 />
+                <YTToast
+                    ref={toast => this.toast = toast}
+                />
             </View>
         )
     }
@@ -287,22 +317,23 @@ const data = [
 
 const styles = StyleSheet.create({
     margins :{
-        marginRight: 20,
-        marginLeft: 20,
+        marginRight: scaleSize(30),
+        marginLeft: scaleSize(30),
     },
     textInput : {
-        marginTop: 10,
-        height: 100,
+        marginTop: scaleSize(30),
+        height: scaleSize(200),
         backgroundColor: '#ffffff',
         textAlignVertical: 'top'
     },
     translateBtn: {
-        height: 44,
-        marginTop: 20,
+        height: scaleSize(80),
+        marginTop: scaleSize(30),
         backgroundColor: THEME_LIGHT_BG_COLOR
     },
     scrollView:{
         marginTop: 20,
+        height: scaleSize(650)
     },
     queryView:{
         backgroundColor: '#ffff',
@@ -335,7 +366,7 @@ const styles = StyleSheet.create({
         backgroundColor: THEME_BG_COLOR,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 30
+        height: scaleSize(60)
     },
     changleLogo:{
         width: 20,
