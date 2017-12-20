@@ -47,12 +47,16 @@ class MainPage extends Component {
                 console.log('mainPage remove word');
                 mainDispatch.removeMark(main.data);
             }
-            
         });
+
+        this.subscription2 = DeviceEventEmitter.addListener('MainPageShowToast',(errMsg)=>{
+            this.toast.show(errMsg);
+        })
     }
 
     componentWillUnmount(){
         this.subscription.remove();
+        this.subscription2.remove();
     }
 
     _onTranslate(){
@@ -165,6 +169,7 @@ class MainPage extends Component {
         }
     }
 
+
 /**
  * ================== render ========================================================
  */
@@ -261,6 +266,7 @@ class MainPage extends Component {
     }
 
     render(){
+
         return (
             <View>
                 {this._renderLanguageView()}

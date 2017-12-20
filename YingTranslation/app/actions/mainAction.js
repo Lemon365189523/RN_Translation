@@ -53,22 +53,33 @@ export const translate = (word, toCoding, fromCoding ) => {
             
             POST(YOUDAO_HTTP, params)
                 .then((resJson) => {
+                    console.log('============网络解析=======================');
                     console.log(resJson);
-                    WordsStorage.findWord(
-                        resJson.l + resJson.query
-                    ).then(data => {
+                    console.log('=======================================');
+                    if (resJson.errorCode === "0" && resJson.query){
+                        
+                        WordsStorage.findWord(
+                            resJson.l + resJson.query
+                        ).then(data => {
+                            dispatch({
+                                type: Types.REQUEST_SUCCESS,
+                                data: data
+                            })
+                        }).catch(err => {
+                            resJson.mark = false;
+                            console.log('单词从网络拿');
+                            dispatch({
+                                type: Types.REQUEST_SUCCESS,
+                                data: resJson
+                            })
+                        });
+                    }else{
                         dispatch({
-                            type: Types.REQUEST_SUCCESS,
-                            data: data
+                            type: Types.REQUEST_ERR,
+                            errorMsg: "查询没有该单词"
                         })
-                    }).catch(err=>{
-                        resJson.mark = false;
-                        console.log('单词从网络拿');
-                        dispatch({
-                            type: Types.REQUEST_SUCCESS,
-                            data: resJson
-                        })
-                    });
+                    }
+
      
                 }).catch((err) => {
                     console.error(err.message);

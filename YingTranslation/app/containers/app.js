@@ -33,6 +33,7 @@ const TabContainer = TabNavigator(
 
 //基本的导航栏设置
 const navigationOptions = {
+    headerBackTitle: null,
     headerStyle: {
         backgroundColor: THEME_BG_COLOR,
         elevation: 0,

@@ -5,6 +5,7 @@ import {
     View,
     Animated,
     Text,
+    TouchableOpacity
 } from 'react-native'
 export const DURATION = { LENGTH_LONG: 2000, LENGTH_SHORT: 500 };
 const OPACITY = 0.6;
@@ -23,9 +24,11 @@ export default class ToastUtil extends Component {
             'bottom',
         ]),
     }
+    //初始props的值
     static defaultProps = {
         position: 'center',
     }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -67,37 +70,56 @@ export default class ToastUtil extends Component {
             });
         }, this.duration);
     }
+
+    _onClickClose(){
+        if (!this.isShow) return;
+        this.timer && clearTimeout(this.timer);
+        Animated.timing(
+            this.state.opacityValue,
+            {
+                toValue: 0.0,
+                duration: 0,
+            }
+        ).start(() => {
+            this.setState({
+                isShow: false,
+            });
+            this.isShow = false;
+        });
+    }
+
     componentWillUnmount() {
         this.timer && clearTimeout(this.timer);
     }
-
 
 
     render() {
         let top;
         switch (this.props.position) {
             case 'top':
-                top = 160;
+                top = 0;
                 break;
             case 'center':
-                top = deviceHeight / 2;
+                top = deviceHeight / 2 - scaleSize(200);
                 break;
             case 'bottom':
-                top = deviceHeight - 160;
+                top = deviceHeight - scaleSize(400);
                 break;
         }
 
         let view = this.state.isShow ?
-            <View
+            <TouchableOpacity
                 style={[styles.container, { top: top }]}
                 pointerEvents="none"
+                // activeOpacity={1}
+                onPress={()=>this._onClickClose()}
             >
                 <Animated.View
                     style={[styles.content, { opacity: this.state.opacityValue }]}
                 >
                     <Text style={styles.text}>{this.state.text}</Text>
                 </Animated.View>
-            </View> : null;
+            </TouchableOpacity> : null;
         return view;
     }
 }

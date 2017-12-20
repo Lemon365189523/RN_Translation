@@ -1,5 +1,8 @@
 
 import * as Types from "../constants/ActionTypes";
+import {
+    DeviceEventEmitter
+} from 'react-native';
 
 let initialState = {
     data: {},
@@ -11,7 +14,7 @@ let mainReducer = (state = initialState, action) => {
         case Types.REQUEST_START:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
             }
             break;
         
@@ -19,12 +22,16 @@ let mainReducer = (state = initialState, action) => {
             
             return {
                 isLoading: false,
-                data: action.data
+                data: action.data,
             }
             break;
 
         case Types.REQUEST_ERR:
-
+            DeviceEventEmitter.emit('MainPageShowToast',action.errorMsg);
+            return{
+                ...state,
+            }
+            
             break;  
         default:
             return {
