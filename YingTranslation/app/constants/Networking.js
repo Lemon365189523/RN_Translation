@@ -26,6 +26,7 @@ export default function request(method, url, body) {
             body: body ,
         })
         .then((res) => {
+            console.log(res);
             return res.json();
         });
 }

@@ -17,6 +17,21 @@ const { Surface, Shape, Path, Group} = ART;
 const art_height = 90;
 const radius = 300;
 
+const btnArr = [
+    {
+        id: 'baidu',
+        img: Imgs.baiduIcon
+    },
+    {
+        id: 'youdao',
+        img: Imgs.youdaoIcon
+    },
+    {
+        id: 'google',
+        img: Imgs.googlIecon
+    }
+];
+
 export default class WordDetailsPage extends React.Component{
     
     componentDidMount() {
@@ -99,7 +114,6 @@ export default class WordDetailsPage extends React.Component{
     }
 
     _renderBtnView(){
-        const btnArr = [Imgs.baiduIcon, Imgs.youdaoIcon, Imgs.googlIecon];
         return(
             <View style={[styles.threeView, styles.viewMargin]}>
                 <Image source={Imgs.lian} style={[styles.topLeftImg, styles.imageSize]} resizeMode={"stretch"} />
@@ -109,8 +123,11 @@ export default class WordDetailsPage extends React.Component{
                     {
                         btnArr.map((item, key)=>{
                             return (
-                                <TouchableOpacity key={key} >
-                                    <Image source={item} resizeMode={"stretch"} style={{height:40,width:40}}/>
+                                <TouchableOpacity 
+                                    key={key} 
+                                    onPress={()=>this._onClickOnLineBtn(item.id)}
+                                >
+                                    <Image source={item.img} resizeMode={"stretch"} style={{height:40,width:40}}/>
                                 </TouchableOpacity>
                             )
                         })
@@ -119,6 +136,26 @@ export default class WordDetailsPage extends React.Component{
             </View>
 
         )
+    }
+
+    _onClickOnLineBtn(id){
+        console.log(id);
+        const navigate = this.props.navigation.navigate;
+        //http://fanyi.baidu.com/translate?aldtype=16047&query=lemon%0D%0A&keyfrom=baidu&smartresult=dict&lang=en2zh#en/zh/lemon
+        switch (id) {
+            case 'baidu':
+                navigate('WebView', { title: '百度翻译', url:"http://fanyi.baidu.com/translate?aldtype=16047&query=lemon%0D%0A&keyfrom=baidu&smartresult=dict&lang=en2zh#en/zh/lemon"});
+                break;
+            case 'youdao':
+                navigate('WebView', { title: '有道翻译', url: "http://www.youdao.com/w/fr/lemon/#keyfrom=dict2.top"})
+                break;
+
+            case 'goole':
+
+                break;
+            default:
+                break;
+        }
     }
 
     render(){

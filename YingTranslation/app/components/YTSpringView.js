@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     subViewWrapper:{
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backfaceVisibility: 'hidden'
     },
     wrapper:{
         flexDirection: 'column',

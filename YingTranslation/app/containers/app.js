@@ -3,6 +3,7 @@ import MainContainer from "./MainContainer";
 import NewWordContainer from './NewWordContainer';
 import {THEME_BG_COLOR} from '../constants/Colors';
 import WordDetailsPage from '../pages/words/WordDetailsPage';
+import WebViewPage from '../pages/webViewpage';
 import {View} from 'react-native';
 import React from "react";
 
@@ -67,6 +68,10 @@ const App = StackNavigator({
     },
     Details:{
         screen: WordDetailsPage,
+        navigationOptions: ({ navigation }) => StackOptions({ navigation })
+    },
+    WebView:{
+        screen: WebViewPage,
         navigationOptions: ({ navigation }) => StackOptions({ navigation })
     }
 })

@@ -50,7 +50,7 @@ export const translate = (word, toCoding, fromCoding ) => {
                 data: data
             })
         }).catch((err)=>{
-            
+            console.log('请求网络');
             POST(YOUDAO_HTTP, params)
                 .then((resJson) => {
                     console.log('============网络解析=======================');
@@ -82,7 +82,11 @@ export const translate = (word, toCoding, fromCoding ) => {
 
      
                 }).catch((err) => {
-                    console.error(err.message);
+                    console.log(err.message);
+                    dispatch({
+                        type: Types.REQUEST_ERR,
+                        errorMsg: "网络请求失败"
+                    })
                 });
         })
 

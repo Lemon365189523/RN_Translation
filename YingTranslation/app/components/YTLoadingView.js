@@ -54,6 +54,10 @@ export default class YTLoadingView extends Component {
 
     }
 
+    _onRequestClose(){
+
+    }
+
     render(){
 
         const {visible} = this.props
@@ -68,6 +72,7 @@ export default class YTLoadingView extends Component {
                 animationType={"fade"}
                 visible={visible}
                 transparent={true}//是否透明
+                onRequestClose={this._onRequestClose} //安卓必须要实现该方法
             >
                 <View style={styles.loadingView}>
                     <Animated.Image 
