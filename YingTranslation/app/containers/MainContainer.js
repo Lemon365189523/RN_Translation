@@ -2,7 +2,8 @@ import React from 'react';
 import { 
     View,
     Text,
-    StatusBar
+    StatusBar,
+    TouchableOpacity
  } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 import MainPage from '../pages/main/Main'
@@ -18,8 +19,8 @@ class MainContainer extends React.Component {
         title: '翻译',
         tabBarIcon: ({ tintColor }) => (
             <Icon name="ios-home" size={25} color={tintColor} />
-        ),
-    };
+        )
+    }
 
     componentDidMount(){
         SplashScreen.hide();

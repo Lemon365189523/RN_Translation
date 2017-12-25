@@ -4,17 +4,24 @@ import NewWordContainer from './NewWordContainer';
 import {THEME_BG_COLOR} from '../constants/Colors';
 import WordDetailsPage from '../pages/words/WordDetailsPage';
 import WebViewPage from '../pages/webViewpage';
+import ORCContainer from "./OCRContainer";
 import {View} from 'react-native';
 import React from "react";
 
 const TabContainer = TabNavigator(
     {
         Main: { screen: MainContainer },
-        NewWord: { screen: NewWordContainer}
+        OCR: { 
+            screen: ORCContainer 
+        },
+        NewWord: { screen: NewWordContainer},
+        
     },
     {
         lazy: true,
         tabBarPosition: 'bottom',
+        swipeEnabled: false,
+        animationEnabled: false,
         tabBarOptions: {
             activeTintColor: THEME_BG_COLOR,
             inactiveTintColor: '#999999',
@@ -27,10 +34,13 @@ const TabContainer = TabNavigator(
             },
             tabStyle: {
                 padding: 0
-            }
+            },
+            
         }
     }
 );
+
+
 
 //基本的导航栏设置
 const navigationOptions = {
@@ -59,7 +69,7 @@ const StackOptions = (({navigation}) => {
 })
 
 //函数作为一个子参数是无效的，应该调用这个函数而不是返回它
-const headerRightView = (navigation) => { (<View></View>)};
+const headerRightView = (navigation) => { (<View> </View>)};
 
 const App = StackNavigator({
     Home: {
@@ -75,5 +85,6 @@ const App = StackNavigator({
         navigationOptions: ({ navigation }) => StackOptions({ navigation })
     }
 })
+
 
 export default App;

@@ -139,23 +139,84 @@ export default class WordDetailsPage extends React.Component{
     }
 
     _onClickOnLineBtn(id){
-        console.log(id);
         const navigate = this.props.navigation.navigate;
-        //http://fanyi.baidu.com/translate?aldtype=16047&query=lemon%0D%0A&keyfrom=baidu&smartresult=dict&lang=en2zh#en/zh/lemon
+        const { info } = this.props.navigation.state.params;
+        console.log(info);
+        var strs = info.l.split("2");
+        var fromL = strs[0];
+        var toL = strs[1];
+        var q = info.query;
+
         switch (id) {
             case 'baidu':
-                navigate('WebView', { title: '百度翻译', url:"http://fanyi.baidu.com/translate?aldtype=16047&query=lemon%0D%0A&keyfrom=baidu&smartresult=dict&lang=en2zh#en/zh/lemon"});
+                
+                navigate('WebView', { title: '百度翻译', url: this._changeBaiduUrl(fromL, toL, q)});
                 break;
             case 'youdao':
-                navigate('WebView', { title: '有道翻译', url: "http://www.youdao.com/w/fr/lemon/#keyfrom=dict2.top"})
+                navigate('WebView', { title: '有道翻译', url: this._changeYouDaoUrl(fromL,toL, q)});
                 break;
 
-            case 'goole':
-
+            case 'google':
+                navigate('WebView', { title: '谷歌翻译', url: this._changeGoogleUrl(fromL, toL, q)})
                 break;
             default:
                 break;
         }
+    }
+
+    _changeBaiduUrl(fromL, toL ,query){
+        //http://fanyi.baidu.com/translate?aldtype=16047&query=lemon%0D%0A&keyfrom=baidu&smartresult=dict&lang=en2zh#en/zh/lemon
+        //http://fanyi.baidu.com/translate?aldtype=16047&query=hello%0D%0A&keyfrom=baidu&smartresult=dict&lang=auto2zh#en/jp/hello
+        var changeF = function changeStr(params) {
+            switch (params) {
+                case "EN":
+                    return "en"
+                    break;
+                case "ja":
+                    return "jp";
+                    break;
+                case "ko":
+                    return "kor";
+                    break;
+                case "fr":
+                    return "fra";
+                    break;
+                case "es":
+                    return "spa";
+                    break;
+                default:
+                    return params;
+                    break;
+            }
+        }
+
+        var f = changeF(fromL);
+        var t = changeF(toL);
+        return "http://fanyi.baidu.com/translate?aldtype=16047&query=" + query + "%0D%0A&keyfrom=baidu&smartresult=dict&lang=auto2zh#" + f + "/" + t + "/" + query;
+    }
+
+    _changeYouDaoUrl(fromL, toL, query){
+        //https://m.youdao.com/dict?le=jap&q=lemon
+        var changeF = function changeStr(params) {
+            switch (params) {
+                case "EN":
+                    return "eng";
+                case "ja":
+                    return "jap";
+                    break;
+                    break;
+                default:
+                    break;
+            }
+        }
+        var t = changeF(toL);
+        return "https://m.youdao.com/dict?le=" + t + "&q=" + query;
+    }
+
+    _changeGoogleUrl(fromL, toL, query){
+        //https://translate.google.cn/#en/zh-CN/lemon  ja  fr ko es pt ru
+        
+        return "https://translate.google.cn/#"+fromL+"/"+toL+"/" + query;
     }
 
     render(){

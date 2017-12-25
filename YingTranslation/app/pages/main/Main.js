@@ -18,7 +18,7 @@ import ImgSource from '../../img';
 import YTLoadingView from '../../components/YTLoadingView';
 import YTDropdown from '../../components/YTDropdown';
 import YTSpringView from '../../components/YTSpringView';
-import {scaleSize} from '../../constants/ScreenUtil';
+import {scaleSize, deviceHeight} from '../../constants/ScreenUtil';
 import YTToast from '../../components/YTToast';
 
 const SELECT_TO = 99;
@@ -268,7 +268,7 @@ class MainPage extends Component {
     render(){
 
         return (
-            <View>
+            <View >
                 {this._renderLanguageView()}
                 <TextInput 
                     style={[styles.textInput, styles.margins]}
@@ -338,8 +338,8 @@ const styles = StyleSheet.create({
         backgroundColor: THEME_LIGHT_BG_COLOR
     },
     scrollView:{
-        marginTop: 20,
-        height: scaleSize(650)
+        marginTop: scaleSize(30),
+        height: deviceHeight  - scaleSize(670),
     },
     queryView:{
         backgroundColor: '#ffff',
