@@ -1,55 +1,37 @@
-import React, { Component}from 'react';
-import {
-    View,
-    Text,
-    StatusBar,
-    TouchableOpacity,
-    
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, { Component } from "react";
 
+import OCRPage from "../pages/OCRPage/OCRPage";
+import * as ocrCreators from '../actions/ocrAction';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class OCRContainer extends Component {
-
-    constructor(props){
-        super(props);
-        this.state = {
-            visible: true
-        }
-    }
+class OCRContainer extends Component {
 
     static navigationOptions = {
-        title: '拍照翻译',
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name="md-camera" size={25} color={tintColor} />
-        ),
-        header: null,
-        tabBarOnPress: (scene, jumpToIndex) => {
-            console.log(scene);
-            //拦截tabbar点击事件
-            jumpToIndex(scene.index);
-        },
-    };
-
-
-    componentDidMount(){
-
+        header: null
     }
-    
+
     render(){
-        return (
-            <View> 
-                <TouchableOpacity onPress={()=>{
-                    
-                    this.setState({
-                        visible: false
-                    },()=>{
-                        this.props.navigation.goBack();
-                    })
-                }}>  
-                    <Text> 关闭</Text>
-                </TouchableOpacity>
-            </View>
+        return(
+            <OCRPage {...this.props}/>
         )
     }
-}
+} 
+
+//过滤state
+const mapStateToProps = (state) => {
+    const { ocr } = state;
+
+    return {
+        ocr
+    };
+};
+
+//过滤action
+const mapDispatchToProps = (dispatch) => {
+    const ocrDispatch = bindActionCreators(ocrCreators, dispatch);
+    return {
+        ocrDispatch
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(OCRContainer);

@@ -14,7 +14,7 @@ import { YOUDAO_HTTP } from "../constants/Urls";
 import MD5 from "crypto-js/md5";
 import * as Types from '../constants/ActionTypes';
 import * as WordsStorage from '../constants/WordsStorage';
-import WordDetailsPage from '../pages/words/WordDetailsPage';
+
 import { 
     DeviceEventEmitter
  } from 'react-native';

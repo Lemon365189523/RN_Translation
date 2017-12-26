@@ -192,7 +192,7 @@ export default class WordDetailsPage extends React.Component{
 
         var f = changeF(fromL);
         var t = changeF(toL);
-        return "http://fanyi.baidu.com/translate?aldtype=16047&query=" + query + "%0D%0A&keyfrom=baidu&smartresult=dict&lang=auto2zh#" + f + "/" + t + "/" + query;
+        return "https://fanyi.baidu.com/translate?aldtype=16047&query=" + query + "%0D%0A&keyfrom=baidu&smartresult=dict&lang=auto2zh#" + f + "/" + t + "/" + query;
     }
 
     _changeYouDaoUrl(fromL, toL, query){

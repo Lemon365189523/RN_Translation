@@ -4,16 +4,15 @@ import NewWordContainer from './NewWordContainer';
 import {THEME_BG_COLOR} from '../constants/Colors';
 import WordDetailsPage from '../pages/words/WordDetailsPage';
 import WebViewPage from '../pages/webViewpage';
-import ORCContainer from "./OCRContainer";
+import OCRContainer from "./OCRContainer";
+import TabCenterContainer from './TabBarCenterContainer'
 import {View} from 'react-native';
 import React from "react";
 
 const TabContainer = TabNavigator(
     {
         Main: { screen: MainContainer },
-        OCR: { 
-            screen: ORCContainer 
-        },
+        TabCenter: { screen: TabCenterContainer },
         NewWord: { screen: NewWordContainer},
         
     },
@@ -83,6 +82,9 @@ const App = StackNavigator({
     WebView:{
         screen: WebViewPage,
         navigationOptions: ({ navigation }) => StackOptions({ navigation })
+    },
+    OCR:{
+        screen: OCRContainer,
     }
 })
 
