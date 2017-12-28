@@ -293,7 +293,7 @@ class MainPage extends Component {
                     {this._renderBasicView()}
                     {this._renderWebView()}
                 </ScrollView>
-                <YTLoadingView visible={false}/>
+                
                 <YTDropdown 
                     ref={(drowdown)=>{this.drowdown = drowdown}}
                     data={data}
@@ -307,7 +307,7 @@ class MainPage extends Component {
     }
 
 }
-
+//<YTLoadingView visible={false}/>
 export default MainPage;
 
 const data = [

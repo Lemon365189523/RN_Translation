@@ -20,9 +20,18 @@ export default class YTLoadingView extends Component {
             springValue: new Animated.Value(1),
         }
     }
+    
+    //初始props的值
+    static defaultProps = {
+        visible: false 
+    }
 
-    componentDidMount(){
-        this._startAnimation();
+
+    componentDidUpdate(nextProps, nextState){
+        if (!nextProps.visible) {
+           
+            this._startAnimation();
+        }
     }
 
     _startAnimation(){
@@ -94,11 +103,16 @@ YTLoadingView.propType = {
 
 const styles = StyleSheet.create({
     loadingView:{
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        // width: Dimensions.get('window').width,
+        // height: Dimensions.get('window').height,
         backgroundColor: 'rgba(52,52,52,0.5)', 
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'absolute',
+        top:0,
+        bottom:0,
+        left:0,
+        right:0
     },
     image:{
         height: 30,

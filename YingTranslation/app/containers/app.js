@@ -5,7 +5,8 @@ import {THEME_BG_COLOR} from '../constants/Colors';
 import WordDetailsPage from '../pages/words/WordDetailsPage';
 import WebViewPage from '../pages/webViewpage';
 import OCRContainer from "./OCRContainer";
-import TabCenterContainer from './TabBarCenterContainer'
+import TabCenterContainer from './TabBarCenterContainer';
+import OCRResultContainer from './OCRResultContainer';
 import {View} from 'react-native';
 import React from "react";
 
@@ -85,6 +86,9 @@ const App = StackNavigator({
     },
     OCR:{
         screen: OCRContainer,
+    },
+    OCRResult:{
+        screen: OCRResultContainer
     }
 })
 

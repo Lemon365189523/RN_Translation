@@ -2,7 +2,8 @@ import * as Types from "../constants/ActionTypes";
 
 let initialState = {
     loading: false,
-    data: {}
+    data: {},
+    pushAction: false
 }
 
 let ocrReducer = (state = initialState, action) => {
@@ -11,7 +12,9 @@ let ocrReducer = (state = initialState, action) => {
         case Types.REQUEST_SUCCESS:
             return{
                 ...state,
-                loading:false
+                loading:false,
+                data: action.data,
+                pushAction: true
             }
             break;  
         
@@ -20,6 +23,14 @@ let ocrReducer = (state = initialState, action) => {
                 ...state,
                 loading: true
             }
+            break;
+
+        case Types.PUSH_OCRRESULTPAGE_SUCCESS:
+            return{
+                ...state,
+                pushAction:false
+            }
+
             break;
         default:
             return{

@@ -11,6 +11,7 @@ import Camera from 'react-native-camera';
 import {THEME_BG_COLOR} from '../../constants/Colors';
 import {deviceWidth} from '../../constants/ScreenUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import YTLoadingView from '../../components/YTLoadingView';
 
 var options = {
     includeBase64: true,
@@ -26,8 +27,14 @@ export default class OCRPage extends Component {
         
     }
 
-    componentDidMount() {
-
+    shouldComponentUpdate(nextProps, nextState) {
+        
+        if (nextProps.ocr.pushAction != this.props.ocr.pushAction && nextProps.ocr.pushAction == true) {
+            this.props.navigation.navigate('OCRResult', { imageData: this.imageData,resultData:nextProps.ocr.data});
+            this.props.ocrDispatch.pushResultPageSuccess();
+            return false;
+        }
+        return true;
     }
 
     _onClickGoBack(){
@@ -37,10 +44,13 @@ export default class OCRPage extends Component {
 
 
     _openPicker(){
+        const {ocrDispatch} = this.props;
         ImagePicker.openPicker(
             options
         ).then(image => {
             console.log(image);
+            this.imageData = image.data;
+            ocrDispatch.OCRTranslate(image.data);
         }).catch(e => {
             console.log(e);
         });
@@ -49,17 +59,26 @@ export default class OCRPage extends Component {
 
     //拍摄照片
     _takePicture() {
+        console.log("点击拍照")
+        const { ocrDispatch,ocr } = this.props;
+        console.log(this.camera);
         this.camera.capture({ jpegQuality: 50 })
             .then(function (data) {
                 console.log("拍照成功！图片保存地"  );
-                console.log(data)
+                console.log(data);
+                this.imageData = data;
+                ocrDispatch.OCRTranslate(data);
             })
             .catch(err => console.error(err));
     }
 
     render(){
+        console.log("visible:---------" + this.props.ocr.loading);
         return (
             <View style={styles.container}>
+                <YTLoadingView 
+                    visible={this.props.ocr.loading}
+                />
                 <StatusBar 
                     backgroundColor={'rgba(0,0,0,0)'}
                     translucent={true}
@@ -92,7 +111,7 @@ export default class OCRPage extends Component {
                     <TouchableOpacity 
                         activeOpacity={0.8}
                         style={styles.photoBtn}
-                        onPress={this._openPicker}
+                        onPress={this._openPicker.bind(this)}
                     >
                         <Ionicons name={'md-photos'} size={40} color={'#ffff'} />
                     </TouchableOpacity>

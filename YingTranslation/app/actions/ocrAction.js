@@ -12,13 +12,22 @@ export const OCRTranslate = (img) => {
         dispatch({
             type: Types.REQUEST_START,
         })
-        setTimeout(() => {
+        this.setTimeout(() => {
+            console.log('请求成功');
             dispatch({
                 type: Types.REQUEST_SUCCESS,
                 data: testData
-            })
+            });
         }, 2000);
         
+    }
+}
+
+export const pushResultPageSuccess = () =>{
+    return dispatch => {
+        dispatch({
+            type: Types.PUSH_OCRRESULTPAGE_SUCCESS
+        });
     }
 }
 
