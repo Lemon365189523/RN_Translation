@@ -9,7 +9,6 @@ import {
 import {THEME_BG_COLOR} from '../../constants/Colors'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {scaleSize} from '../../constants/ScreenUtil'
-import YTImageViewer from '../../components/YTImageViewer';
  
 export default class OCRResultPage extends Component {
 
@@ -42,7 +41,7 @@ export default class OCRResultPage extends Component {
             <View style={styles.container}>
                 <View style={styles.headerView}>
 
-                    <YTImageViewer 
+                    <Image 
                         style={styles.image}
                         source={{ uri:"data:image/png;base64,"+imageData}}
                         resizeMode="cover"
