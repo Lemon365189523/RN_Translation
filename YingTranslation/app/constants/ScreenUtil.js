@@ -38,3 +38,5 @@ export function scaleSize(size) {
     size = Math.round(size * scale + 0.5);
     return size / defaultPixel;
 }
+
+export const onePixel =  scaleSize(1);

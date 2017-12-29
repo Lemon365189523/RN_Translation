@@ -34,8 +34,6 @@ export default class OCRContainer extends Component {
         }
     };
 
-
-
     render() {
         return (
             <View/>

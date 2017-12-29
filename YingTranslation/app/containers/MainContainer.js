@@ -24,8 +24,8 @@ class MainContainer extends React.Component {
 
     componentDidMount(){
         SplashScreen.hide();
+        
     }
-
     render(){
         return(
             <View>

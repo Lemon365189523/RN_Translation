@@ -6,7 +6,8 @@ import {
     StyleSheet,
     Dimensions,
     Animated,
-    Easing
+    Easing,
+    StatusBar
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Imgs from '../img';
@@ -44,17 +45,17 @@ export default class YTLoadingView extends Component {
             Animated.parallel([
                 Animated.timing(this.state.rotation,{
                     toValue: 1, 
-                    duration: 2000,
+                    duration: 1000,
                     easing: Easing.linear
                 }),
                 Animated.sequence([
                     Animated.timing(this.state.springValue, {
                         toValue: 2,
-                        duration: 1000,
+                        duration: 500,
                     }),
                     Animated.timing(this.state.springValue, {
                         toValue: 1,
-                        duration: 1000,
+                        duration: 500,
                     })
                 ])
                
@@ -83,6 +84,9 @@ export default class YTLoadingView extends Component {
                 transparent={true}//是否透明
                 onRequestClose={this._onRequestClose} //安卓必须要实现该方法
             >
+                <StatusBar 
+                    backgroundColor={'rgba(52,52,52,0.5)'}
+                />
                 <View style={styles.loadingView}>
                     <Animated.Image 
                         source={Imgs.translation} 

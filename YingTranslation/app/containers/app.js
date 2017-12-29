@@ -7,8 +7,14 @@ import WebViewPage from '../pages/webViewpage';
 import OCRContainer from "./OCRContainer";
 import TabCenterContainer from './TabBarCenterContainer';
 import OCRResultContainer from './OCRResultContainer';
-import {View} from 'react-native';
+import {
+    View,
+    Animated,
+    Easing
+} from 'react-native';
 import React from "react";
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
+
 
 const TabContainer = TabNavigator(
     {
@@ -70,7 +76,7 @@ const StackOptions = (({navigation}) => {
 
 //函数作为一个子参数是无效的，应该调用这个函数而不是返回它
 const headerRightView = (navigation) => { (<View> </View>)};
-
+//StackNavigator(RouteConfigs, StackNavigatorConfig) 
 const App = StackNavigator({
     Home: {
         screen: TabContainer,
@@ -86,11 +92,48 @@ const App = StackNavigator({
     },
     OCR:{
         screen: OCRContainer,
+        navigationOptions:{
+            headerTintColor: '#ffff',
+            gesturesEnabled: false,
+        }
     },
     OCRResult:{
-        screen: OCRResultContainer
+        screen: OCRResultContainer,
+        navigationOptions: {
+            headerTintColor: '#ffff',
+            gesturesEnabled: false,
+        },
+    },
+}, {
+        // transitionConfig: (sceneProps) => transitionConfig(sceneProps),
+});
+
+//这样来判断跳转动画不完善
+const transitionConfig = (sceneProps) => {
+    if (!sceneProps.scene) {
+        return
     }
-})
+    console.log(sceneProps);
+    const { scene } = sceneProps;
+    const { route } = scene;
+    const params = route.params || {};
+    const transition = params.transition || 'forHorizontal';
+    var transitionSpec = {};
+    console.log(transition);
+    if (params.transition) {
+        console.log(route.routeName)
+        transitionSpec = {
+            duration: 0,
+            easing: Easing.circle,
+            timing: Animated.timing,
+        }
+    }
+
+    return {
+        screenInterpolator: CardStackStyleInterpolator.forVertical,
+        transitionSpec: transitionSpec
+    }
+}
 
 
-export default App;
+export default App ;

@@ -3,7 +3,9 @@ import OCRResultPage from "../pages/OCRPage/OCRResultPage";
 import * as ocrResultCreators from '../actions/ocrAction';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import {  
+    Modal
+} from "react-native";
 class OCRResultContainer extends Component {
 
     static navigationOptions = {

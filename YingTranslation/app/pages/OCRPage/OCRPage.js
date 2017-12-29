@@ -32,6 +32,7 @@ export default class OCRPage extends Component {
         if (nextProps.ocr.pushAction != this.props.ocr.pushAction && nextProps.ocr.pushAction == true) {
             this.props.navigation.navigate('OCRResult', { imageData: this.imageData,resultData:nextProps.ocr.data});
             this.props.ocrDispatch.pushResultPageSuccess();
+            console.log("pushResultPageSuccess");
             return false;
         }
         return true;
