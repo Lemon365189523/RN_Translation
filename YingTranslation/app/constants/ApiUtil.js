@@ -33,12 +33,14 @@ export const YoudaoApi = (word, toCoding, fromCoding ) =>{
 
 
 export const YoudaoOcrApi = (imgBase64) =>{
-
+    //目前支持英文：en，和中英混合：zh-en
+    var appkey = "3d67d5327743f0d9";
+    var salt = "10086";
     var params = {
         "img": imgBase64,
-        "sign": MD5(appkey + q + salt + "6HY64UvqIuzG4pBxjTkoENjrS6ApUljI").toString(),
-        "salt": "10086",
-        "appKey": "3d67d5327743f0d9",
+        "sign": MD5(appkey + imgBase64 + salt + "6HY64UvqIuzG4pBxjTkoENjrS6ApUljI").toString(),
+        "salt": salt,
+        "appKey": appkey,
         "detectType": "10011",
         "imageType":"1",
         "docType":"json",

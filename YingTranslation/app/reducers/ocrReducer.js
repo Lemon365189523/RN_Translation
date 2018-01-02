@@ -1,5 +1,7 @@
 import * as Types from "../constants/ActionTypes";
-
+import { 
+    DeviceEventEmitter
+ } from "react-native";
 let initialState = {
     loading: false,
     data: {},
@@ -30,8 +32,14 @@ let ocrReducer = (state = initialState, action) => {
                 ...state,
                 pushAction:false
             }
+        case Types.REQUEST_ERR:
+            DeviceEventEmitter.emit('OCRPageShowToast', action.errorMsg);
+            return {
+                ...state,
+                loading: false
+            }
 
-            break;
+            break;  
         default:
             return{
                 ...state

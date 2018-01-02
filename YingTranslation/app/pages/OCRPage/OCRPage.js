@@ -5,6 +5,7 @@ import {
     TouchableOpacity,
     StatusBar,
     StyleSheet,
+    DeviceEventEmitter
 } from "react-native";
 import ImagePicker from 'react-native-image-crop-picker';  
 import Camera from 'react-native-camera';
@@ -12,6 +13,8 @@ import {THEME_BG_COLOR} from '../../constants/Colors';
 import {deviceWidth} from '../../constants/ScreenUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import YTLoadingView from '../../components/YTLoadingView';
+import YTToast from '../../components/YTToast';
+
 
 var options = {
     includeBase64: true,
@@ -37,6 +40,17 @@ export default class OCRPage extends Component {
         }
         return true;
     }
+
+    componentDidMount(){
+        this.subscription = DeviceEventEmitter.addListener('OCRPageShowToast', (errMsg) => {
+            this.toast.show(errMsg);
+        });
+    }
+
+    componentWillUnmount(){
+        this.subscription.remove();
+    }
+
 
     _onClickGoBack(){
         const navigation = this.props.navigation;
@@ -123,6 +137,9 @@ export default class OCRPage extends Component {
                         <Ionicons name={'ios-radio-button-on-outline'} size={80} color={'#ffff'} />
                     </TouchableOpacity>
                 </View>
+                <YTToast
+                    ref={toast => this.toast = toast}
+                />
             </View>
         )
 
@@ -163,3 +180,4 @@ const styles = StyleSheet.create({
         left: 15
     }
 })
+
