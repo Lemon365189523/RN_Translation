@@ -9,12 +9,14 @@ import {
     StatusBar,
     Text,
     Picker,
+    ActivityIndicator
 } from "react-native";
 import {THEME_BG_COLOR} from '../../constants/Colors'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {scaleSize,onePixel,deviceWidth} from '../../constants/ScreenUtil';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Images from '../../img'
+import ocrReducer from "../../reducers/ocrReducer";
 
 export default class OCRResultPage extends Component {
 
@@ -23,14 +25,17 @@ export default class OCRResultPage extends Component {
         this.state = {
             visible:false,
             showPicker: false,
-            formStr: '中文',
             toStr: '英文',
         }
         this.toStr = '英文';
     }
 
     componentDidMount(){
-        console.log(this.props);
+        console.log(this.props.navigation.state.params);
+    }
+
+    componentWillMount(){
+        
     }
 
     _onClickGoBack(){
@@ -50,23 +55,38 @@ export default class OCRResultPage extends Component {
     }
 
     _onChangeToString(value){
-        // const toIndex = data.indexOf(value);
-        // const codings = ["zh-CHS", "ja", "EN", "ko", "fr", "ru", "pt", "es"]
+
         this.setState({
             toStr: value
         })
     }
 
     _onClickDoneBtn(){
-
+        this.toStr = this.state.toStr;
+        this.setState({
+            showPicker: false
+        });
+        //翻译
+        const { ocrResult, resultDispatch} = this.props;
+        const toIndex = data.indexOf(this.toStr);
+        const codings = ["zh-CHS", "ja", "EN", "ko", "fr", "ru", "pt", "es"];
+        const resultData = this.props.navigation.state.params.resultData
+        resultDispatch.translate(resultData,codings[toIndex]);
     }
     
     _renderItenm(data){
+        const {ocrResult} = this.props;
         return(
             <View style={styles.itemView}>
                 <Text style={styles.text}> {data.item.words}</Text>
                 <View style={styles.line}/>
-                <Text style={styles.text}> {data.item.translation}</Text>
+                
+                {
+                    ocrResult.activity ? 
+                    <ActivityIndicator color={'#ffff'} size="small" /> 
+                        : 
+                    <Text style={styles.text}> {data.item.translation}</Text>
+                }
             </View>
         )
     }
@@ -82,7 +102,13 @@ export default class OCRResultPage extends Component {
     }
 
     render(){
-        const { imageData, resultData} = this.props.navigation.state.params;
+        console.log('render');
+        const { imageData} = this.props.navigation.state.params;
+        const {ocrResult} = this.props;
+        var resultData = ocrReducer.resultData;
+        if (!resultData) {
+            resultData = this.props.navigation.state.params.resultData;
+        }
         return(
             <View style={styles.container}>
 
@@ -137,7 +163,6 @@ export default class OCRResultPage extends Component {
                         activeOpacity={0.8}
                         onPress={this._onClickChangeBtn.bind(this)}
                     >
-                        <Text style={{color:'#ffff'}}>{this.state.formStr}</Text>
                         <Image source={Images.change}/>
                         <Text style={{ color: '#ffff'}}>{this.toStr}</Text>
                     </TouchableOpacity>
@@ -154,7 +179,7 @@ export default class OCRResultPage extends Component {
                 >
                     <TouchableOpacity
                         style={styles.changeModalView}
-                        onPress={()=>{this.setState({showPicker: false})}}
+                        onPress={()=>{this.setState({showPicker: false,toStr:this.toStr})}}
                         activeOpacity={1}
                     >
                         <View style={styles.picker}>
@@ -234,7 +259,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 30,
         backgroundColor: 'rgba(0,0,0,0)',
-        left: deviceWidth/2 - 30,
+        left: deviceWidth/2 - scaleSize(80),
         flexDirection: 'row'
     },
     picker:{

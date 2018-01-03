@@ -1,5 +1,4 @@
 
-// 公共types
 export const REQUEST_ERR = "requestErr";
 export const REQUEST_SUCCESS = "requestSucces";
 export const REQUEST_START = "requestStart";
@@ -13,4 +12,6 @@ export const REMOVE_WORD_SUCCESS = "RemoveWordSuccess";
 
 
 //ocr
-export const PUSH_OCRRESULTPAGE_SUCCESS = "PushOCRResultPage_Success";
+export const OCR_REQUEST_ERR = "Ocr_RequestErr";
+export const OCR_REQUEST_SUCCESS = "OCRRequestSucces";
+export const OCR_REQUEST_START = "OCRRequestStart";

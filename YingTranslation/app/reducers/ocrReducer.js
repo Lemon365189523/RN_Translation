@@ -5,38 +5,31 @@ import {
 let initialState = {
     loading: false,
     data: {},
-    pushAction: false
 }
 
 let ocrReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case Types.REQUEST_SUCCESS:
+        case Types.OCR_REQUEST_SUCCESS:
             return{
                 ...state,
                 loading:false,
                 data: action.data,
-                pushAction: true
             }
             break;  
         
-        case Types.REQUEST_START:
+        case Types.OCR_REQUEST_START:
             return{
                 ...state,
-                loading: true
+                loading: true,
             }
             break;
 
-        case Types.PUSH_OCRRESULTPAGE_SUCCESS:
-            return{
-                ...state,
-                pushAction:false
-            }
-        case Types.REQUEST_ERR:
+        case Types.OCR_REQUEST_ERR:
             DeviceEventEmitter.emit('OCRPageShowToast', action.errorMsg);
             return {
                 ...state,
-                loading: false
+                loading: false,
             }
 
             break;  

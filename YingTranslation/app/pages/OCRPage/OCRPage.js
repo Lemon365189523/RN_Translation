@@ -30,25 +30,22 @@ export default class OCRPage extends Component {
         
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        
-        if (nextProps.ocr.pushAction != this.props.ocr.pushAction && nextProps.ocr.pushAction == true) {
-            this.props.navigation.navigate('OCRResult', { imageData: this.imageData,resultData:nextProps.ocr.data});
-            this.props.ocrDispatch.pushResultPageSuccess();
-            console.log("pushResultPageSuccess");
-            return false;
-        }
-        return true;
-    }
 
     componentDidMount(){
         this.subscription = DeviceEventEmitter.addListener('OCRPageShowToast', (errMsg) => {
             this.toast.show(errMsg);
         });
+        this.subscription2 = DeviceEventEmitter.addListener('PushOCRResultPage', ()=>{
+            console.log(this.props);
+            const { data} = this.props.ocr;
+            
+            this.props.navigation.navigate('OCRResult', { imageData: this.imageData, resultData: data });
+        });
     }
 
     componentWillUnmount(){
         this.subscription.remove();
+        this.subscription2.remove();
     }
 
 

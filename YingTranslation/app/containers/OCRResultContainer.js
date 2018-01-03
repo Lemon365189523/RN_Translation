@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import OCRResultPage from "../pages/OCRPage/OCRResultPage";
-import * as ocrResultCreators from '../actions/ocrAction';
+import * as ocrResultCreators from '../actions/ocrResultAction';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {  

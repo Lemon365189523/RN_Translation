@@ -3,13 +3,16 @@ import {
     YoudaoOcrApi
  } from "../constants/ApiUtil";
 import * as Types from '../constants/ActionTypes';
+import {
+    DeviceEventEmitter
+} from "react-native";
 
 /* 传入base64的图片 */
 export const OCRTranslate = (img) => {
 
     return dispatch => {
         dispatch({
-            type: Types.REQUEST_START,
+            type: Types.OCR_REQUEST_START,
         })
         /* 正常 */
         // YoudaoOcrApi(img).then(resData=>{
@@ -29,9 +32,10 @@ export const OCRTranslate = (img) => {
         //             if (count === lines.length) {
         //                 //全部翻译完成
         //                 dispatch({
-        //                     type: Types.REQUEST_SUCCESS,
+        //                     type: Types.OCR_REQUEST_SUCCESS,
         //                     data: resData["Result"]
         //                 });
+                            // DeviceEventEmitter.emit('PushOCRResultPage');
         //             }
         //         }
 
@@ -61,7 +65,7 @@ export const OCRTranslate = (img) => {
         //         console.log(resData.errorCode);
         //         console.log('========');
         //         dispatch({
-        //             type: Types.REQUEST_ERR,
+        //             type: Types.OCR_REQUEST_ERR,
         //             errorMsg: "图片识别失败:errCode" + resData.errorCode
         //         })
         //     }
@@ -70,7 +74,7 @@ export const OCRTranslate = (img) => {
         //     console.log(err);
         //     console.log('========');
         //     dispatch({
-        //         type: Types.REQUEST_ERR,
+        //         type: Types.OCR_REQUEST_ERR,
         //         errorMsg: '图片识别请求失败: err' + err
         //     })
         // })
@@ -78,9 +82,10 @@ export const OCRTranslate = (img) => {
 
         
         dispatch({
-            type: Types.REQUEST_SUCCESS,
+            type: Types.OCR_REQUEST_SUCCESS,
             data: resData["Result"]
         });
+        DeviceEventEmitter.emit('PushOCRResultPage');
             // dispatch({
             //     type: Types.REQUEST_ERR,
             //     errorMsg: '图片识别请求失败: err' 
@@ -88,16 +93,6 @@ export const OCRTranslate = (img) => {
     }
 }
 
-
-
-
-export const pushResultPageSuccess = () =>{
-    return dispatch => {
-        dispatch({
-            type: Types.PUSH_OCRRESULTPAGE_SUCCESS
-        });
-    }
-}
 
 const resData = {
     "errorCode": "0",
