@@ -6,13 +6,16 @@ import {
     StyleSheet,
     Image,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    NativeModules
 } from 'react-native';
 import { THEME_BG_COLOR  } from "../../constants/Colors";
 import {deviceHeight,deviceWidth} from '../../constants/ScreenUtil';
 import Imgs from '../../img';
 import YTSpringView from '../../components/YTSpringView';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import SharePlatform from '../../librarys/share/SharePlatform'; 
+import UShare from '../../librarys/share/share'
 const { Surface, Shape, Path, Group} = ART;
 
 const art_height = 90;
@@ -53,7 +56,22 @@ export default class WordDetailsPage extends React.Component{
     componentWillMount(){
         this.props.navigation.setParams({
             onClickShareBtn:()=>{
-                console.log('点击分享');
+               
+                
+                /** 
+       * 参数说明： 
+       * 1. 标题 
+       * 2. 内容 
+       * 3. 跳转链接 
+       * 4. 图片链接 
+       * 5. 分享平台 
+       * 6. 分享结果回调 
+       */
+                UShare.share('标题', '内容', 'http://baidu.com', 'http://dev.umeng.com/images/tab2_1.png', SharePlatform.QQ, (message) => {
+                    // message:分享成功、分享失败、取消分享
+                    // ToastAndroid.show(message,ToastAndroid.SHORT);  
+                    console.log(message);
+                });  
             }
         })
     }
@@ -88,7 +106,7 @@ export default class WordDetailsPage extends React.Component{
         if (basic === undefined) {
             return null;
         }
-        console.log(basic);
+        // console.log(basic);
         const { explains } = basic;
         const ukPhonetic = basic["uk-phonetic"];
         const usPhonetic = basic["us-phonetic"];
