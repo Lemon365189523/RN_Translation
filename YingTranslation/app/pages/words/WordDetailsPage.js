@@ -12,6 +12,7 @@ import { THEME_BG_COLOR  } from "../../constants/Colors";
 import {deviceHeight,deviceWidth} from '../../constants/ScreenUtil';
 import Imgs from '../../img';
 import YTSpringView from '../../components/YTSpringView';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 const { Surface, Shape, Path, Group} = ART;
 
 const art_height = 90;
@@ -34,9 +35,27 @@ const btnArr = [
 
 export default class WordDetailsPage extends React.Component{
     
-    componentDidMount() {
-        // console.log(this.props.navigation);
-        
+    static navigationOptions = ({ navigation, screenProps }) => ({
+        // 
+        headerRight: (
+            <TouchableOpacity 
+                onPress={()=>{
+                    navigation.state.params.onClickShareBtn()
+                }}
+                style={{paddingRight:10}}
+            >
+                <Ionicons name={"ios-share-outline"} size={35} color={'#ffff'} />
+            </TouchableOpacity>
+        )
+    })
+
+
+    componentWillMount(){
+        this.props.navigation.setParams({
+            onClickShareBtn:()=>{
+                console.log('点击分享');
+            }
+        })
     }
 
     _renderHeader(title){

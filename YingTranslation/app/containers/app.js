@@ -70,12 +70,19 @@ const StackOptions = (({navigation}) => {
     //需要对navigationOptions进行深拷贝 这样才不影响到使用navigationOptions的地方
     var options = JSON.parse(JSON.stringify(navigationOptions));
     options.headerTitle = state.params.title ;
-    options.headerRight= headerRightView(navigation);//添加一个空view让安卓端的标题居中
+    // options.headerRight = headerRightView(navigation);//添加一个空view让安卓端的标题居中
     return options;
 })
 
 //函数作为一个子参数是无效的，应该调用这个函数而不是返回它
-const headerRightView = (navigation) => { (<View> </View>)};
+const headerRightView = ((navigation) => { 
+    if (navigation.state.params.headerRight) {
+        return navigation.state.params.headerRight;
+    }else{
+        <View> </View>;
+    }
+     
+});
 //StackNavigator(RouteConfigs, StackNavigatorConfig) 
 const App = StackNavigator({
     Home: {
