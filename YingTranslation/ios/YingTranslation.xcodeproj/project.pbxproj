@@ -56,15 +56,15 @@
 		F243E63525004AEBB5872D9A /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52214F6EB064C9BBC5CF590 /* libSplashScreen.a */; };
 		F74D9B1F1FC2D0EC006F4D85 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = F74D9B031FC2D0EC006F4D85 /* Fonts */; };
 		F75FC5C91FEA099A00CA60C4 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F75FC59F1FEA095600CA60C4 /* libART.a */; };
-		F783C3681FFDD12900237F5C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C3671FFDD12900237F5C /* SystemConfiguration.framework */; };
-		F783C36A1FFDD13300237F5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C3691FFDD13300237F5C /* CoreGraphics.framework */; };
-		F783C36C1FFDD13C00237F5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C36B1FFDD13C00237F5C /* CoreTelephony.framework */; };
-		F783C36E1FFDD14500237F5C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C36D1FFDD14500237F5C /* ImageIO.framework */; };
-		F783C3701FFDD15600237F5C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C36F1FFDD15600237F5C /* libsqlite3.tbd */; };
-		F783C3721FFDD16400237F5C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C3711FFDD16400237F5C /* libc++.tbd */; };
-		F783C3DC1FFDDEB500237F5C /* sharemodule.m in Sources */ = {isa = PBXBuildFile; fileRef = F783C39A1FFDD46400237F5C /* sharemodule.m */; };
-		F783C4411FFE13C300237F5C /* UMSocialCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4391FFE13B200237F5C /* UMSocialCore.framework */; };
-		F783C4421FFE13CF00237F5C /* UMSocialNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C43A1FFE13B200237F5C /* UMSocialNetwork.framework */; };
+		F783C4AF1FFE201200237F5C /* sharemodule.m in Sources */ = {isa = PBXBuildFile; fileRef = F783C4AE1FFE200900237F5C /* sharemodule.m */; };
+		F783C4B11FFE209B00237F5C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4B01FFE209B00237F5C /* SystemConfiguration.framework */; };
+		F783C4B31FFE20A500237F5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4B21FFE20A400237F5C /* CoreGraphics.framework */; };
+		F783C4B51FFE20B200237F5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4B41FFE20B100237F5C /* CoreTelephony.framework */; };
+		F783C4B71FFE20BB00237F5C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4B61FFE20BB00237F5C /* ImageIO.framework */; };
+		F783C4B91FFE20CA00237F5C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4B81FFE20CA00237F5C /* libsqlite3.tbd */; };
+		F783C4BB1FFE20D800237F5C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4BA1FFE20D800237F5C /* libc++.tbd */; };
+		F783C4BD1FFE20E500237F5C /* UMSocialCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4BC1FFE20E400237F5C /* UMSocialCore.framework */; };
+		F783C4BF1FFE20F800237F5C /* UMSocialNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4BE1FFE20F800237F5C /* UMSocialNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -434,6 +434,17 @@
 		EE8C1C740950431EA1CD0460 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		F74D9B031FC2D0EC006F4D85 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		F75FC5991FEA095600CA60C4 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		F783C4AB1FFE1FDE00237F5C /* UMSocial */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UMSocial; sourceTree = "<group>"; };
+		F783C4AD1FFE200900237F5C /* sharemodule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sharemodule.h; sourceTree = "<group>"; };
+		F783C4AE1FFE200900237F5C /* sharemodule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sharemodule.m; sourceTree = "<group>"; };
+		F783C4B01FFE209B00237F5C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F783C4B21FFE20A400237F5C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F783C4B41FFE20B100237F5C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F783C4B61FFE20BB00237F5C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		F783C4B81FFE20CA00237F5C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		F783C4BA1FFE20D800237F5C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		F783C4BC1FFE20E400237F5C /* UMSocialCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMSocialCore.framework; path = UMSocial/UMSocialSDK/UMSocialCore.framework; sourceTree = "<group>"; };
+		F783C4BE1FFE20F800237F5C /* UMSocialNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMSocialNetwork.framework; path = UMSocial/UMSocialSDK/UMSocialNetwork.framework; sourceTree = "<group>"; };
 		FE36379473B5455699FF0F70 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -450,6 +461,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F783C4BF1FFE20F800237F5C /* UMSocialNetwork.framework in Frameworks */,
+				F783C4BD1FFE20E500237F5C /* UMSocialCore.framework in Frameworks */,
+				F783C4BB1FFE20D800237F5C /* libc++.tbd in Frameworks */,
+				F783C4B91FFE20CA00237F5C /* libsqlite3.tbd in Frameworks */,
+				F783C4B71FFE20BB00237F5C /* ImageIO.framework in Frameworks */,
+				F783C4B51FFE20B200237F5C /* CoreTelephony.framework in Frameworks */,
+				F783C4B31FFE20A500237F5C /* CoreGraphics.framework in Frameworks */,
+				F783C4B11FFE209B00237F5C /* SystemConfiguration.framework in Frameworks */,
 				F75FC5C91FEA099A00CA60C4 /* libART.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -580,6 +599,8 @@
 		13B07FAE1A68108700A75B9A /* YingTranslation */ = {
 			isa = PBXGroup;
 			children = (
+				F783C4AB1FFE1FDE00237F5C /* UMSocial */,
+				F783C4AA1FFE1FD100237F5C /* Librarys */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -633,6 +654,14 @@
 		805EF33654534171AB29B286 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F783C4BE1FFE20F800237F5C /* UMSocialNetwork.framework */,
+				F783C4BC1FFE20E400237F5C /* UMSocialCore.framework */,
+				F783C4BA1FFE20D800237F5C /* libc++.tbd */,
+				F783C4B81FFE20CA00237F5C /* libsqlite3.tbd */,
+				F783C4B61FFE20BB00237F5C /* ImageIO.framework */,
+				F783C4B41FFE20B100237F5C /* CoreTelephony.framework */,
+				F783C4B21FFE20A400237F5C /* CoreGraphics.framework */,
+				F783C4B01FFE209B00237F5C /* SystemConfiguration.framework */,
 				616A6F8830F64FBC8F7AA3E0 /* libz.tbd */,
 			);
 			name = Frameworks;
@@ -763,6 +792,24 @@
 				F75FC5A11FEA095600CA60C4 /* libART-tvOS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F783C4AA1FFE1FD100237F5C /* Librarys */ = {
+			isa = PBXGroup;
+			children = (
+				F783C4AC1FFE200900237F5C /* UMShare */,
+			);
+			name = Librarys;
+			path = YingTranslation/Librarys;
+			sourceTree = "<group>";
+		};
+		F783C4AC1FFE200900237F5C /* UMShare */ = {
+			isa = PBXGroup;
+			children = (
+				F783C4AD1FFE200900237F5C /* sharemodule.h */,
+				F783C4AE1FFE200900237F5C /* sharemodule.m */,
+			);
+			path = UMShare;
 			sourceTree = "<group>";
 		};
 		F7897A551FDE2B1500D0F7CD /* Products */ = {
@@ -1377,6 +1424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F783C4AF1FFE201200237F5C /* sharemodule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -1503,6 +1551,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UMSocial/UMSocialSDK",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1518,6 +1570,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.lemonfan.YingTranslation;
 				PRODUCT_NAME = YingTranslation;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1529,6 +1582,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UMSocial/UMSocialSDK",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1544,6 +1601,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.lemonfan.YingTranslation;
 				PRODUCT_NAME = YingTranslation;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1811,6 +1869,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UMSocial/UMSocialSDK",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1826,6 +1888,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.lemonfan.YingTranslation;
 				PRODUCT_NAME = YingTranslation;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
