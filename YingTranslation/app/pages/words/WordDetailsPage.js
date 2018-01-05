@@ -13,9 +13,8 @@ import {deviceHeight,deviceWidth} from '../../constants/ScreenUtil';
 import Imgs from '../../img';
 import YTSpringView from '../../components/YTSpringView';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import YTShareView from '../../components/YTShareView';
 const { Surface, Shape, Path, Group} = ART;
-import SharePlatform from '../../librarys/share/SharePlatform';
-import UShare from '../../librarys/share/share'
 
 
 const art_height = 90;
@@ -57,21 +56,7 @@ export default class WordDetailsPage extends React.Component{
         this.props.navigation.setParams({
             onClickShareBtn:()=>{
 
-                /** 
-       * 参数说明： 
-       * 1. 标题 
-       * 2. 内容 
-       * 3. 跳转链接 
-       * 4. 图片链接 
-       * 5. 分享平台 
-       * 6. 分享结果回调 
-       */
-                UShare.share('标题', '内容', 'http://baidu.com', 'http://dev.umeng.com/images/tab2_1.png', SharePlatform.QQ, (message) => {
-                    // message:分享成功、分享失败、取消分享
-                    // ToastAndroid.show(message,ToastAndroid.SHORT);  
-                    console.log(message);
-                });  
-
+                console.log(this.shareView);
             }
         })
     }
@@ -290,6 +275,9 @@ export default class WordDetailsPage extends React.Component{
                     {this._renderBtnView()}
            
                 </ScrollView>
+                <YTShareView 
+                    ref={shareView => {this.shareView=shareView} }
+                />
             </View>
         )
     }

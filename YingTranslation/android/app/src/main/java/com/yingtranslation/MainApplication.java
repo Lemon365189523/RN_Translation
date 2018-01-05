@@ -35,8 +35,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
-            new RCTCameraPackage(),
-            new PickerPackage(),
+              new RCTCameraPackage(),
+              new PickerPackage(),
               new SplashScreenReactPackage(),
               new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
               new VectorIconsPackage()
