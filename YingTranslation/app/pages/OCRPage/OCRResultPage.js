@@ -176,6 +176,7 @@ export default class OCRResultPage extends Component {
                 <Modal 
                     visible={this.state.showPicker}
                     transparent={true}
+                    onRequestClose={() => { }}
                 >
                     <TouchableOpacity
                         style={styles.changeModalView}
