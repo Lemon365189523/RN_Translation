@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
     translateBtn: {
         height: scaleSize(80),
         marginTop: scaleSize(30),
-        backgroundColor: THEME_LIGHT_BG_COLOR
+        backgroundColor: THEME_BG_COLOR
     },
     scrollView:{
         marginTop: scaleSize(30),
