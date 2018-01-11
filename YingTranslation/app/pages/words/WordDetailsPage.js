@@ -56,7 +56,7 @@ export default class WordDetailsPage extends React.Component{
         this.props.navigation.setParams({
             onClickShareBtn:()=>{
 
-                console.log(this.shareView);
+                this.shareView.show();
             }
         })
     }

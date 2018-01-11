@@ -1,17 +1,45 @@
 import { 
     Animated,
     View,
-    StyleSheet
+    StyleSheet,
+    Modal,
+    Animated
  } from "react-native";
- import React ,{Component} from'react';
+import React ,{Component} from'react';
 import SharePlatform from '../librarys/share/SharePlatform';
 import UShare from '../librarys/share/share'
+import { deviceHeight } from "../constants/ScreenUtil";
 
-
+const viewHeight = 200;
 export default class YTShareView extends Component{
 
-    
-    onShare(){
+    constructor(props){
+        super(props);
+
+        this.state = {
+            showModal: false,
+            bottom: new Animated.Value(-viewHeight)
+        }
+    }
+
+
+    render() {
+        return (
+            <Modal
+                visible={this.state.showModal}
+                onRequestClose={()=>{}}
+            >
+                <Animated.View
+                    style={[styles.bottomView,{bottom:this.state.bottom}]}
+                >
+
+                </Animated.View>
+            </Modal>
+        )
+    }
+
+
+    _onShare(){
 
         /** 
         * 参数说明： 
@@ -29,15 +57,22 @@ export default class YTShareView extends Component{
         });  
     }
 
-     render(){
-         return(
-             <View>
+    show(){
+        this.setState({
+            showModal:true,
+        },()=>{
+            Animated.timing(this.state.top, {
+                toValue: 0,
+                duration: 200
+            }).start();
+        });
+        
+    }
 
-             </View>
-         )
-     }
  }
 
  const styles = StyleSheet.create({
-
+    bottomView:{
+        
+    }
  })
