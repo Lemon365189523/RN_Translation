@@ -40,6 +40,67 @@
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
+      <!-- 集成新浪微博对应的HTTP白名单-->
+      <key>sina.com.cn</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>sinaimg.cn</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>sinajs.cn</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>sina.cn</key>
+      <dict>
+        <!-- 适配iOS10 -->
+        <key>NSExceptionMinimumTLSVersion</key>
+        <string>TLSv1.0</string>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>weibo.cn</key>
+      <dict>
+        <!-- 适配iOS10 -->
+        <key>NSExceptionMinimumTLSVersion</key>
+        <string>TLSv1.0</string>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>weibo.com</key>
+      <dict>
+        <!-- 适配iOS10 -->
+        <key>NSExceptionMinimumTLSVersion</key>
+        <string>TLSv1.0</string>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <!-- 新浪微博-->
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
@@ -129,7 +190,6 @@
     <string>timopensdkdataline</string>
     <string>wtlogintimV1</string>
     <string>timapiV1</string>
-
   </array>  
 </dict>
 </plist>

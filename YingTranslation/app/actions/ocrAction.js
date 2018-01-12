@@ -15,77 +15,77 @@ export const OCRTranslate = (img) => {
             type: Types.OCR_REQUEST_START,
         })
         /* 正常 */
-        // YoudaoOcrApi(img).then(resData=>{
-        //     console.log('====resData====');
-        //     console.log(resData);
-        //     console.log('========');
-        //     if (resData["errorCode"] === '0' && resData["Result"]["lines"]) {
-        //         console.log('请求成功');
+        YoudaoOcrApi(img).then(resData=>{
+            console.log('====resData====');
+            console.log(resData);
+            console.log('========');
+            if (resData["errorCode"] === '0' && resData["Result"]["lines"]) {
+                console.log('请求成功');
                 
-        //         const result = resData["Result"];
-        //         const language = result["language"];
-        //         const lines = result["lines"];
-        //         var count = 0;
-        //         //暂时图片识别只能识别英文和中文  en  zh_CN
-        //         function handle(translation, i) {
-        //             lines[i]["translation"] = translation;
-        //             if (count === lines.length) {
-        //                 //全部翻译完成
-        //                 dispatch({
-        //                     type: Types.OCR_REQUEST_SUCCESS,
-        //                     data: resData["Result"]
-        //                 });
-                            // DeviceEventEmitter.emit('PushOCRResultPage');
-        //             }
-        //         }
+                const result = resData["Result"];
+                const language = result["language"];
+                const lines = result["lines"];
+                var count = 0;
+                //暂时图片识别只能识别英文和中文  en  zh_CN
+                function handle(translation, i) {
+                    lines[i]["translation"] = translation;
+                    if (count === lines.length) {
+                        //全部翻译完成
+                        dispatch({
+                            type: Types.OCR_REQUEST_SUCCESS,
+                            data: resData["Result"]
+                        });
+                        DeviceEventEmitter.emit('PushOCRResultPage');
+                    }
+                }
 
-        //         for (let index = 0; index < lines.length; index++) {
-        //             const element = lines[index];
-        //             const words = element["words"];
-        //             YoudaoApi(words, 'zh-CHS', language).then(res => {
-        //                 if (res.errorCode === "0") {
-        //                     console.log(index + "--===--" + res.query);
-        //                     count++;
-        //                     handle(res.translation, index);
-        //                 } else {
-        //                     //翻译有错的话就直接把该文本返回
-        //                     count++;
-        //                     handle(words, index);
-        //                 }
-        //             }).catch(err => {
-        //                  //翻译失败的话就直接把该文本返回
-        //                 count++;
-        //                 handle(words, index);
-        //             });
+                for (let index = 0; index < lines.length; index++) {
+                    const element = lines[index];
+                    const words = element["words"];
+                    YoudaoApi(words, 'zh-CHS', language).then(res => {
+                        if (res.errorCode === "0") {
+                            console.log(index + "--===--" + res.query);
+                            count++;
+                            handle(res.translation, index);
+                        } else {
+                            //翻译有错的话就直接把该文本返回
+                            count++;
+                            handle(words, index);
+                        }
+                    }).catch(err => {
+                         //翻译失败的话就直接把该文本返回
+                        count++;
+                        handle(words, index);
+                    });
 
-        //         }
+                }
 
-        //     }else{
-        //         console.log('====errorCode====');
-        //         console.log(resData.errorCode);
-        //         console.log('========');
-        //         dispatch({
-        //             type: Types.OCR_REQUEST_ERR,
-        //             errorMsg: "图片识别失败:errCode" + resData.errorCode
-        //         })
-        //     }
-        // }).catch(err=>{
-        //     console.log('====err====');
-        //     console.log(err);
-        //     console.log('========');
-        //     dispatch({
-        //         type: Types.OCR_REQUEST_ERR,
-        //         errorMsg: '图片识别请求失败: err' + err
-        //     })
-        // })
+            }else{
+                console.log('====errorCode====');
+                console.log(resData.errorCode);
+                console.log('========');
+                dispatch({
+                    type: Types.OCR_REQUEST_ERR,
+                    errorMsg: "图片识别失败:errCode" + resData.errorCode
+                })
+            }
+        }).catch(err=>{
+            console.log('====err====');
+            console.log(err);
+            console.log('========');
+            dispatch({
+                type: Types.OCR_REQUEST_ERR,
+                errorMsg: '图片识别请求失败: err' + err
+            })
+        })
         /* ------ */
 
         
-        dispatch({
-            type: Types.OCR_REQUEST_SUCCESS,
-            data: resData["Result"]
-        });
-        DeviceEventEmitter.emit('PushOCRResultPage');
+        // dispatch({
+        //     type: Types.OCR_REQUEST_SUCCESS,
+        //     data: resData["Result"]
+        // });
+        // DeviceEventEmitter.emit('PushOCRResultPage');
             // dispatch({
             //     type: Types.REQUEST_ERR,
             //     errorMsg: '图片识别请求失败: err' 

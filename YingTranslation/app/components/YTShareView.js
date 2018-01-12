@@ -136,7 +136,7 @@ export default class YTShareView extends Component{
             >
                 <Image 
                     source={item.image}
-                    style={{height:60,width:60}}
+                    style={{height:scaleSize(100),width:scaleSize(100)}}
                 />
                 <Text
                     style={{ color: THEME_BG_COLOR,marginTop:10,fontSize:12}}

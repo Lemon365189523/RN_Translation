@@ -14,9 +14,16 @@ export default class WebViewPage extends React.Component {
                     source={{uri: url}}
                     domStorageEnabled={true}
                     javaScriptEnabled={true}
+                    startLoadingState={true}
                 />
                 
             </View>
+        )
+    }
+
+    _renderLoading(){
+        return(
+            <Text>加载中</Text>
         )
     }
 }
