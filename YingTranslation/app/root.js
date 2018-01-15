@@ -40,7 +40,7 @@ global.storage = storage;
 class Root extends Component {
 
     componentDidMount(){
-        this._cheakUpdate();
+        // this._cheakUpdate();
     }
 
     
@@ -81,7 +81,9 @@ class Root extends Component {
                     }
                 );
             }
-        })
+        }).catch(err=>{
+            console.log(err);
+        });
     }
 
     render(){
