@@ -15,9 +15,13 @@ import store from './store/store';
 import CodePush from 'react-native-code-push';
 import Storage from 'react-native-storage';
 
-//android-staging r9g2x1Fb_1sx8tmM7KSRa3AA7cja3e570e6d-1756-4fea-ac2a-83ad60454c8e
-//ios-staging   1lX9t67WozG8DjDE0Az1QzZa7FpL3e570e6d-1756-4fea-ac2a-83ad60454c8e
-const deploymentKey = "1lX9t67WozG8DjDE0Az1QzZa7FpL3e570e6d-1756-4fea-ac2a-83ad60454c8e";
+const androidStaging = 'n4y-sxoQHiysgURL7unE1bTut9YQ3e570e6d-1756-4fea-ac2a-83ad60454c8e';
+const iosStaging = 'ta1bpcPvESizun_uIkDVJ1YSGGMg3e570e6d-1756-4fea-ac2a-83ad60454c8e';
+
+const androidProduction = '1OAyH3rFJHAuWa8eKvULh5-xDCru3e570e6d-1756-4fea-ac2a-83ad60454c8e';
+const iosProduction = 'deQ_So3Qjrx66nz2wSRtweCNpyw63e570e6d-1756-4fea-ac2a-83ad60454c8e';
+
+const deploymentKey = iosStaging;
 
 var storage = new Storage({
     // 最大容量，默认值1000条数据循环存储
@@ -40,12 +44,14 @@ global.storage = storage;
 class Root extends Component {
 
     componentDidMount(){
-        // this._cheakUpdate();
+        this._cheakUpdate();
     }
 
     
     _cheakUpdate(){
+        console.log('=======开始检查更新=========');
         CodePush.checkForUpdate(deploymentKey).then((update) => {
+            console.log('=======是否需要更新========='+ update);
             if (!update) {
                 Alert.alert("提示", "已是最新版本--", [
                     {
@@ -55,17 +61,16 @@ class Root extends Component {
                     }
                 ]);
             } else {
-                codePush.sync({
-                    deploymentKey: deploymentKey,
-                    updateDialog: {
-                        optionalIgnoreButtonLabel: '稍后',
-                        optionalInstallButtonLabel: '立即更新',
-                        optionalUpdateMessage: '有新版本了，是否更新？',
-                        title: '更新提示'
+                CodePush.sync({
+                        deploymentKey: deploymentKey,
+                        updateDialog: {
+                            optionalIgnoreButtonLabel: '稍后',
+                            optionalInstallButtonLabel: '立即更新',
+                            optionalUpdateMessage: '有新版本了，是否更新？',
+                            title: '更新提示'
+                        },
+                        installMode: CodePush.InstallMode.IMMEDIATE,
                     },
-                    installMode: CodePush.InstallMode.IMMEDIATE,
-
-                },
                     (status) => {
                         switch (status) {
                             case CodePush.SyncStatus.DOWNLOADING_PACKAGE:

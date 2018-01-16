@@ -16,7 +16,7 @@ import { THEME_BG_COLOR } from '../constants/Colors';
 
 class MainContainer extends React.Component {
     static navigationOptions = {
-        title: '翻译',
+        title: '1.0.2',
         tabBarIcon: ({ tintColor }) => (
             <Icon name="ios-home" size={25} color={tintColor} />
         )

@@ -65,6 +65,7 @@
 		F783C4BB1FFE20D800237F5C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4BA1FFE20D800237F5C /* libc++.tbd */; };
 		F783C4BD1FFE20E500237F5C /* UMSocialCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4BC1FFE20E400237F5C /* UMSocialCore.framework */; };
 		F783C4BF1FFE20F800237F5C /* UMSocialNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4BE1FFE20F800237F5C /* UMSocialNetwork.framework */; };
+		F7F39464200D900D0092275B /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7F39463200D90040092275B /* bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -444,6 +445,7 @@
 		F783C4BA1FFE20D800237F5C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		F783C4BC1FFE20E400237F5C /* UMSocialCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMSocialCore.framework; path = UMSocial/UMSocialSDK/UMSocialCore.framework; sourceTree = "<group>"; };
 		F783C4BE1FFE20F800237F5C /* UMSocialNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMSocialNetwork.framework; path = UMSocial/UMSocialSDK/UMSocialNetwork.framework; sourceTree = "<group>"; };
+		F7F39463200D90040092275B /* bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bundle; sourceTree = "<group>"; };
 		FE36379473B5455699FF0F70 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -598,6 +600,7 @@
 		13B07FAE1A68108700A75B9A /* YingTranslation */ = {
 			isa = PBXGroup;
 			children = (
+				F7F39463200D90040092275B /* bundle */,
 				F783C4AB1FFE1FDE00237F5C /* UMSocial */,
 				F783C4AA1FFE1FD100237F5C /* Librarys */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -1347,6 +1350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7F39464200D900D0092275B /* bundle in Resources */,
 				F74D9B1F1FC2D0EC006F4D85 /* Fonts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
