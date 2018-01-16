@@ -44,7 +44,7 @@ global.storage = storage;
 class Root extends Component {
 
     componentDidMount(){
-        this._cheakUpdate();
+        // this._cheakUpdate();
     }
 
     

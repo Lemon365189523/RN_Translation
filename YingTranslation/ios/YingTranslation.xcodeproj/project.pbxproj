@@ -54,7 +54,6 @@
 		D04C069081F44D8E8CF5053D /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B5066448CBB485085269445 /* libimageCropPicker.a */; };
 		F209229802314DAEAB0E134D /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 921CE685FB7648DCA2891A95 /* Zocial.ttf */; };
 		F243E63525004AEBB5872D9A /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A52214F6EB064C9BBC5CF590 /* libSplashScreen.a */; };
-		F74D9B1F1FC2D0EC006F4D85 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = F74D9B031FC2D0EC006F4D85 /* Fonts */; };
 		F75FC5C91FEA099A00CA60C4 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F75FC59F1FEA095600CA60C4 /* libART.a */; };
 		F783C4AF1FFE201200237F5C /* sharemodule.m in Sources */ = {isa = PBXBuildFile; fileRef = F783C4AE1FFE200900237F5C /* sharemodule.m */; };
 		F783C4B11FFE209B00237F5C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4B01FFE209B00237F5C /* SystemConfiguration.framework */; };
@@ -65,7 +64,10 @@
 		F783C4BB1FFE20D800237F5C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4BA1FFE20D800237F5C /* libc++.tbd */; };
 		F783C4BD1FFE20E500237F5C /* UMSocialCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4BC1FFE20E400237F5C /* UMSocialCore.framework */; };
 		F783C4BF1FFE20F800237F5C /* UMSocialNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F783C4BE1FFE20F800237F5C /* UMSocialNetwork.framework */; };
-		F7F39464200D900D0092275B /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7F39463200D90040092275B /* bundle */; };
+		F7F394A6200DE2FB0092275B /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F394A5200DE2FB0092275B /* QBImagePicker.framework */; };
+		F7F394A7200DE2FB0092275B /* QBImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7F394A5200DE2FB0092275B /* QBImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F7F394AA200DE3080092275B /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F394A9200DE3080092275B /* RSKImageCropper.framework */; };
+		F7F394AB200DE3080092275B /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7F394A9200DE3080092275B /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -386,6 +388,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F7F394A8200DE2FC0092275B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F7F394A7200DE2FB0092275B /* QBImagePicker.framework in Embed Frameworks */,
+				F7F394AB200DE3080092275B /* RSKImageCropper.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
@@ -432,7 +449,6 @@
 		DADFB964AF92486C8073E800 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		E41D51B99A514A709E494D3F /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		EE8C1C740950431EA1CD0460 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
-		F74D9B031FC2D0EC006F4D85 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		F75FC5991FEA095600CA60C4 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		F783C4AB1FFE1FDE00237F5C /* UMSocial */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UMSocial; sourceTree = "<group>"; };
 		F783C4AD1FFE200900237F5C /* sharemodule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sharemodule.h; sourceTree = "<group>"; };
@@ -445,7 +461,8 @@
 		F783C4BA1FFE20D800237F5C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		F783C4BC1FFE20E400237F5C /* UMSocialCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMSocialCore.framework; path = UMSocial/UMSocialSDK/UMSocialCore.framework; sourceTree = "<group>"; };
 		F783C4BE1FFE20F800237F5C /* UMSocialNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMSocialNetwork.framework; path = UMSocial/UMSocialSDK/UMSocialNetwork.framework; sourceTree = "<group>"; };
-		F7F39463200D90040092275B /* bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bundle; sourceTree = "<group>"; };
+		F7F394A5200DE2FB0092275B /* QBImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QBImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7F394A9200DE3080092275B /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE36379473B5455699FF0F70 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -463,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F783C4BF1FFE20F800237F5C /* UMSocialNetwork.framework in Frameworks */,
+				F7F394AA200DE3080092275B /* RSKImageCropper.framework in Frameworks */,
 				F783C4BD1FFE20E500237F5C /* UMSocialCore.framework in Frameworks */,
 				F783C4BB1FFE20D800237F5C /* libc++.tbd in Frameworks */,
 				F783C4B91FFE20CA00237F5C /* libsqlite3.tbd in Frameworks */,
@@ -481,6 +499,7 @@
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
+				F7F394A6200DE2FB0092275B /* QBImagePicker.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
@@ -600,7 +619,6 @@
 		13B07FAE1A68108700A75B9A /* YingTranslation */ = {
 			isa = PBXGroup;
 			children = (
-				F7F39463200D90040092275B /* bundle */,
 				F783C4AB1FFE1FDE00237F5C /* UMSocial */,
 				F783C4AA1FFE1FD100237F5C /* Librarys */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -705,7 +723,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				F74D9B031FC2D0EC006F4D85 /* Fonts */,
+				F7F394A9200DE3080092275B /* RSKImageCropper.framework */,
+				F7F394A5200DE2FB0092275B /* QBImagePicker.framework */,
 				13B07FAE1A68108700A75B9A /* YingTranslation */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* YingTranslationTests */,
@@ -866,6 +885,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				F7F394A8200DE2FC0092275B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1350,8 +1370,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7F39464200D900D0092275B /* bundle in Resources */,
-				F74D9B1F1FC2D0EC006F4D85 /* Fonts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7AD8D554FFD846A2B55291CE /* Entypo.ttf in Resources */,
@@ -1791,7 +1809,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1827,7 +1845,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1863,7 +1881,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

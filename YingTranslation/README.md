@@ -9,3 +9,31 @@
 ###使用【keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000】生成签名文件，并将签名文件放入app目录
 ####秘钥：as365189523
 #### CN=fanweijian, OU=lemon, O=lemon, L=guangdong, ST=guangzhou, C=zh
+
+
+##配置CodePus（热更新）
+
+**Authentication：8530917349712d0513e72d18243b731fe60f53cc**
+
+**注册iOS app**
+ `code-push app add YT-ios ios react-native`
+ 
+ eployments:
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ Name       │ Deployment Key                                                   │
+├───────────────────────────────────────────────────────────────────────────────┤
+│ Production │ deQ_So3Qjrx66nz2wSRtweCNpyw63e570e6d-1756-4fea-ac2a-83ad60454c8e │
+├───────────────────────────────────────────────────────────────────────────────┤
+│ Staging    │ ta1bpcPvESizun_uIkDVJ1YSGGMg3e570e6d-1756-4fea-ac2a-83ad60454c8e │
+└───────────────────────────────────────────────────────────────────────────────┘
+
+**4.2 注册android app**
+`code-push app add YT-android android react-native`
+
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ Name       │ Deployment Key                                                   │
+├───────────────────────────────────────────────────────────────────────────────┤
+│ Production │ 1OAyH3rFJHAuWa8eKvULh5-xDCru3e570e6d-1756-4fea-ac2a-83ad60454c8e │
+├───────────────────────────────────────────────────────────────────────────────┤
+│ Staging    │ n4y-sxoQHiysgURL7unE1bTut9YQ3e570e6d-1756-4fea-ac2a-83ad60454c8e │
+└───────────────────────────────────────────────────────────────────────────────┘

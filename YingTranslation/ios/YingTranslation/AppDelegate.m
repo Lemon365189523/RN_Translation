@@ -26,7 +26,8 @@
     #ifdef DEBUG
         jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
     #else
-        jsCodeLocation = [CodePush bundleURLForResource:@"main" withExtension:@"jsbundle" subdirectory:@"bundle"];
+//        jsCodeLocation = [CodePush bundleURLForResource:@"main" withExtension:@"jsbundle" subdirectory:@"bundle"];
+    jsCodeLocation = [CodePush bundleURL];
     #endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
@@ -40,15 +41,15 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-//  [SplashScreen show];
+  [SplashScreen show];
   
   /* 打开调试日志 */
-//  [[UMSocialManager defaultManager] openLog:YES];
-//  
-//  /* 设置友盟appkey */
-//  [[UMSocialManager defaultManager] setUmSocialAppkey:@"5a4da9fdf43e482d8800008e"];
-//  
-//  [self configUSharePlatforms];
+  [[UMSocialManager defaultManager] openLog:YES];
+  
+  /* 设置友盟appkey */
+  [[UMSocialManager defaultManager] setUmSocialAppkey:@"5a4da9fdf43e482d8800008e"];
+  
+  [self configUSharePlatforms];
 
   return YES;
 }
