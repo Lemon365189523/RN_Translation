@@ -1594,7 +1594,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.lemonfan.YingTranslation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lemon.www;
 				PRODUCT_NAME = YingTranslation;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1626,7 +1626,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.lemonfan.YingTranslation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lemon.www;
 				PRODUCT_NAME = YingTranslation;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1914,7 +1914,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cn.lemonfan.YingTranslation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lemon.www;
 				PRODUCT_NAME = YingTranslation;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
