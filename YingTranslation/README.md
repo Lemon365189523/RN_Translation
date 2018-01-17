@@ -6,7 +6,7 @@
 ```
 
 
-###使用【keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000】生成签名文件，并将签名文件放入app目录
+###使用 "keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000" 生成签名文件，并将签名文件放入app目录
 ####秘钥：as365189523
 #### CN=fanweijian, OU=lemon, O=lemon, L=guangdong, ST=guangzhou, C=zh
 

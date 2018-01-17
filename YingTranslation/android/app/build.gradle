@@ -109,6 +109,16 @@ android {
         }
         vectorDrawables.useSupportLibrary = true
     }
+
+    signingConfigs {
+        release {
+            storeFile file("/Users/kadfwj/Documents/YT/YingTranslation/android/app/my-release-key.keystore")
+            storePassword "as365189523"
+            keyAlias "my-key-alias"
+            keyPassword "as365189523"
+        }
+    }
+
     splits {
         abi {
             reset()
@@ -121,6 +131,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release

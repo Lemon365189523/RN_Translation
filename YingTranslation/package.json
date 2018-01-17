@@ -6,6 +6,7 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"bundle-ios": "react-native bundle --entry-file index.js --bundle-output ./ios/bundle/main.jsbundle --platform ios --assets-dest ./ios/bundle --dev fals",
 		"bundle-android":"react-native bundle --entry-file index.js --bundle-output ./android/bundle/index.android.bundle --platform android --assets-dest ./android/bundle --dev false",
+		"gradlew":"cd android && ./gradlew assembleRelease",
 		"test": "jest"
 	},
 	"dependencies": {
