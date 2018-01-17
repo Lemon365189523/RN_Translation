@@ -110,7 +110,7 @@ export default class YTDropdown extends Component {
 const styles = StyleSheet.create({
     bgContainer: { 
         position: 'absolute',
-        top: 30, 
+        top: 25, 
         backgroundColor: 'rgba(0,0,0,0.2)'
     },
     dropdownView:{

@@ -3,6 +3,7 @@
 import * as Types from '../constants/ActionTypes';
 import * as WordsStorage from '../constants/WordsStorage';
 import { YoudaoApi } from "../constants/ApiUtil";
+import { ChangeErrorMsg } from "../constants/ErrorMsg";
 
 import { 
     DeviceEventEmitter
@@ -51,7 +52,7 @@ export const translate = (word, toCoding, fromCoding ) => {
                     }else{
                         dispatch({
                             type: Types.REQUEST_ERR,
-                            errorMsg: "查询没有该单词"
+                            errorMsg: ChangeErrorMsg(parseInt(resJson.errorCode))
                         })
                     }
 

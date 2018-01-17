@@ -5,6 +5,7 @@ import {
     View
 } from 'react-native';
 import React ,{Component} from 'react';
+import { scaleSize } from '../constants/ScreenUtil';
 
 export default class YTButton extends Component{
 
@@ -29,7 +30,7 @@ export default class YTButton extends Component{
 
 const styles = StyleSheet.create({
     touchable:{
-        borderRadius: 10
+        borderRadius: scaleSize(15)
     },
     wrapper:{
         flex: 1,

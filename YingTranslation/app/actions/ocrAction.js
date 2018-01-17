@@ -3,6 +3,7 @@ import {
     YoudaoOcrApi
  } from "../constants/ApiUtil";
 import * as Types from '../constants/ActionTypes';
+import { ChangeErrorMsg } from "../constants/ErrorMsg";
 import {
     DeviceEventEmitter
 } from "react-native";
@@ -66,7 +67,7 @@ export const OCRTranslate = (img) => {
                 console.log('========');
                 dispatch({
                     type: Types.OCR_REQUEST_ERR,
-                    errorMsg: "图片识别失败:errCode" + resData.errorCode
+                    errorMsg:  ChangeErrorMsg(parseInt(resData.errorCode)) 
                 })
             }
         }).catch(err=>{
@@ -75,7 +76,7 @@ export const OCRTranslate = (img) => {
             console.log('========');
             dispatch({
                 type: Types.OCR_REQUEST_ERR,
-                errorMsg: '图片识别请求失败: err' + err
+                errorMsg: '请求失败: err' + err
             })
         })
         /* ------ */

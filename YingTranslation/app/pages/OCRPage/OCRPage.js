@@ -33,7 +33,7 @@ export default class OCRPage extends Component {
 
     componentDidMount(){
         this.subscription = DeviceEventEmitter.addListener('OCRPageShowToast', (errMsg) => {
-            this.toast.show(errMsg);
+            this.toast.show(errMsg,2500);
         });
         this.subscription2 = DeviceEventEmitter.addListener('PushOCRResultPage', ()=>{
             console.log(this.props);

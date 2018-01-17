@@ -52,18 +52,19 @@ export default class YTSpringView extends React.Component {
         const {title, subTitles} = this.props;
         return (
             <View style={styles.wrapper}> 
-                <View style={styles.titleWarpper}>
+                <TouchableOpacity 
+                    style={styles.titleWarpper}
+                    onPress={this._onClickBtn.bind(this)}
+                >
                     <Text > {title} </Text>
-                    <TouchableOpacity  
-                        onPress={this._onClickBtn.bind(this)}
-                    >
-                        <Ionicons 
-                            name={this.state.showSubView ? "md-arrow-dropup-circle" :"md-arrow-dropdown-circle"}
-                            size={13}
-                            color={THEME_BG_COLOR}
-                         /> 
-                    </TouchableOpacity>
-                </View>
+                    
+                    <Ionicons 
+                        name={this.state.showSubView ? "md-arrow-dropup-circle" :"md-arrow-dropdown-circle"}
+                        size={13}
+                        color={THEME_BG_COLOR}
+                    /> 
+                    
+                </TouchableOpacity>
                 <Animated.View style={[styles.subViewWrapper,{height: this.state.subViewHeight}]}>
                     {
                         subTitles.map((item, key)=>{

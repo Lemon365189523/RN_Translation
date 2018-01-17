@@ -9,5 +9,6 @@ export default images = {
     qqzone:require("./QQ空间.png"),
     weixin:require("./wechat.png"),
     wechatMonent:require("./朋友圈.png"),
-    sina:require("./微博.png")
+    sina:require("./微博.png"),
+    error: require("./error.png")
 }

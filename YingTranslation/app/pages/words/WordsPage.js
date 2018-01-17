@@ -98,12 +98,12 @@ export default WordsPage;
 
 const styles = StyleSheet.create({
     itemView:{
-        height: scaleSize(100),
+        height: scaleSize(120),
         backgroundColor: '#fff',
         marginTop: scaleSize(20),
         marginRight: scaleSize(20),
         marginLeft: scaleSize(20),
-        borderRadius:scaleSize(20) ,
+        borderRadius:scaleSize(10) ,
         alignItems: 'center',
         flexDirection: 'row'
     },

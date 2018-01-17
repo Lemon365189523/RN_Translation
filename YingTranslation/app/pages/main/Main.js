@@ -333,13 +333,14 @@ const styles = StyleSheet.create({
         textAlignVertical: 'top'
     },
     translateBtn: {
-        height: scaleSize(80),
+        height: scaleSize(90),
         marginTop: scaleSize(30),
         backgroundColor: THEME_BG_COLOR
     },
     scrollView:{
         marginTop: scaleSize(30),
-        height: deviceHeight  - scaleSize(670),
+        height: deviceHeight  - scaleSize(740),
+        
     },
     queryView:{
         backgroundColor: '#ffff',
