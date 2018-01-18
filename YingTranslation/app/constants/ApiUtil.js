@@ -34,7 +34,7 @@ export const YoudaoApi = (word, toCoding, fromCoding ) =>{
 
 export const YoudaoOcrApi = (imgBase64) =>{
     //目前支持英文：en，和中英混合：zh-en
-    var appkey = "3d67d5327743f0d9";
+    var appkey = "3d67d5327743f0d9"; //"0d7f50006e25dc88"
     var salt = "10086";
     var params = {
         "img": imgBase64,

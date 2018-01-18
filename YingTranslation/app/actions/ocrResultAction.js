@@ -8,7 +8,8 @@ export const translate = (resultData,toCoding) => {
     return dispatch => {
         var result = resultData;
         const language = result["language"];
-        const lines = result["lines"];
+        const regions = result["regions"][0];
+        const lines = regions["lines"];
         var count = 0;
         //暂时图片识别只能识别英文和中文  en  zh_CN
         console.log(result);

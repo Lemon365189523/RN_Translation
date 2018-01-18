@@ -16,12 +16,7 @@ import YTLoadingView from '../../components/YTLoadingView';
 import YTToast from '../../components/YTToast';
 
 
-var options = {
-    includeBase64: true,
-    compressImageQuality: 0.5, //压缩图片的质量 0~1
-    compressVideoPreset: "",
-    cropping: false //是否打开裁剪
-}
+
 
 export default class OCRPage extends Component {
     
@@ -56,6 +51,12 @@ export default class OCRPage extends Component {
 
 
     _openPicker(){
+        var options = {
+            includeBase64: true,
+            compressImageQuality: 0.6, //压缩图片的质量 0~1
+            compressVideoPreset: "",
+            cropping: false //是否打开裁剪
+        };
         const {ocrDispatch} = this.props;
         ImagePicker.openPicker(
             options
@@ -74,14 +75,17 @@ export default class OCRPage extends Component {
         console.log("点击拍照")
         const { ocrDispatch,ocr } = this.props;
         console.log(this.camera);
-        this.camera.capture({ jpegQuality: 50 })
+        this.camera.capture({ jpegQuality: 0 })
             .then(function (data) {
                 console.log("拍照成功！图片保存地"  );
                 console.log(data);
                 this.imageData = data;
                 ocrDispatch.OCRTranslate(data);
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                this.toast.show(err, 2500);
+            });
     }
 
     render(){

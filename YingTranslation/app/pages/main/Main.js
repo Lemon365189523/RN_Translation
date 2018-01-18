@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     },
     scrollView:{
         marginTop: scaleSize(30),
-        height: deviceHeight  - scaleSize(740),
+        height: deviceHeight  - scaleSize(800),
         
     },
     queryView:{

@@ -71,7 +71,7 @@ class WordsPage extends Component {
                     style={styles.removeIcon}
                     onPress={() => this._onClickRemoveBtn(word)}
                 > 
-                    <Ionicons name={"ios-archive-outline"} color={THEME_BG_COLOR} size={20}/>
+                    <Ionicons name={"ios-archive-outline"} color={THEME_BG_COLOR} size={30}/>
                 </TouchableOpacity>
             </TouchableOpacity>
         )

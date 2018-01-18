@@ -18,6 +18,9 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import Images from '../../img'
 import ocrReducer from "../../reducers/ocrReducer";
 
+var selected_from = 1;
+var selected_to = 2;
+
 export default class OCRResultPage extends Component {
 
     constructor(props){
@@ -26,17 +29,17 @@ export default class OCRResultPage extends Component {
             visible:false,
             showPicker: false,
             toStr: '英文',
+            fromStr: '中文'
         }
         this.toStr = '英文';
+        this.fromStr = '中文';
+        this.selected ;
     }
 
     componentDidMount(){
         console.log(this.props.navigation.state.params);
     }
 
-    componentWillMount(){
-        
-    }
 
     _onClickGoBack(){
         const navigation = this.props.navigation;
@@ -48,30 +51,52 @@ export default class OCRResultPage extends Component {
     }
     
 
-    _onClickChangeBtn(){
+    _onClickToBtn(){
+        this.selected = selected_to;
         this.setState({
             showPicker: true
         })
     }
 
     _onChangeToString(value){
+        if (this.selected == selected_to) {
+            this.setState({
+                toStr: value
+            });
+        }else if(this.selected == selected_from){
+            this.setState({
+                fromStr: value
+            });
+        }
+ 
+    }
 
+    _onClickFromBtn(){
+        this.selected = selected_from;
         this.setState({
-            toStr: value
-        })
+            showPicker: true
+        });
     }
 
     _onClickDoneBtn(){
-        this.toStr = this.state.toStr;
-        this.setState({
-            showPicker: false
-        });
-        //翻译
-        const { ocrResult, resultDispatch} = this.props;
-        const toIndex = data.indexOf(this.toStr);
-        const codings = ["zh-CHS", "ja", "EN", "ko", "fr", "ru", "pt", "es"];
-        const resultData = this.props.navigation.state.params.resultData
-        resultDispatch.translate(resultData,codings[toIndex]);
+        if (this.selected == selected_to) {
+            this.toStr = this.state.toStr;
+            this.setState({
+                showPicker: false
+            });
+            //翻译
+            const { ocrResult, resultDispatch } = this.props;
+            const toIndex = data.indexOf(this.toStr);
+            const codings = ["zh-CHS", "ja", "EN", "ko", "fr", "ru", "pt", "es"];
+            const resultData = this.props.navigation.state.params.resultData
+            resultDispatch.translate(resultData, codings[toIndex]);
+        }else if(this.selected == selected_from){
+            this.fromStr = this.state.fromStr;
+            this.setState({
+                showPicker: false
+            });
+        }
+
     }
     
     _renderItenm(data){
@@ -102,12 +127,21 @@ export default class OCRResultPage extends Component {
     }
 
     render(){
-        console.log('render');
+        // console.log('render');
         const { imageData} = this.props.navigation.state.params;
         const {ocrResult} = this.props;
         var resultData = ocrReducer.resultData;
         if (!resultData) {
             resultData = this.props.navigation.state.params.resultData;
+        }
+        var data = [];
+        var selectedValue = "";
+        if (this.selected == selected_to) {
+            data = toData;
+            selectedValue = this.state.toStr;
+        }else if(this.selected == selected_from){
+            data = fromData;
+            selectedValue = this.state.fromStr
         }
         return(
             <View style={styles.container}>
@@ -150,25 +184,34 @@ export default class OCRResultPage extends Component {
                         <Ionicons name={"md-close"} size={35} color={'#ffff'} />
                     </TouchableOpacity>
 
-                    <TouchableOpacity
+                    {/*<TouchableOpacity
                         style={styles.shareBtn}
                         activeOpacity={0.8}
                         onPress={this._onClickShareBtn.bind(this)}
                     >
                         <Ionicons name={"ios-share-outline"} size={35} color={'#ffff'} />
-                    </TouchableOpacity>
+                    </TouchableOpacity>*/}
 
-                    <TouchableOpacity
+                    <View
                         style={styles.changeBtn}
-                        activeOpacity={0.8}
-                        onPress={this._onClickChangeBtn.bind(this)}
                     >
+                        <TouchableOpacity
+                            activeOpacity={0.8}
+                            onPress={this._onClickFromBtn.bind(this)}
+                        >
+                            <Text style={{ color: '#ffff' }}>{this.fromStr}</Text>
+                        </TouchableOpacity>
                         <Image source={Images.change}/>
-                        <Text style={{ color: '#ffff'}}>{this.toStr}</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={0.8}
+                            onPress={this._onClickToBtn.bind(this)}
+                        >
+                            <Text style={{ color: '#ffff'}}>{this.toStr}</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <FlatList
-                    data={resultData.lines}
+                    data={resultData.regions[0].lines}
                     renderItem={this._renderItenm.bind(this)}
                     keyExtractor={this._keyExtractors.bind(this)}
                     style={{marginTop:5}}
@@ -192,10 +235,11 @@ export default class OCRResultPage extends Component {
                             </TouchableOpacity>
                             <Picker
 
-                                selectedValue={this.state.toStr}
+                                selectedValue={selectedValue}
                                 onValueChange={this._onChangeToString.bind(this)}
                             >
                                 {
+                                    
                                     data.map((item, key) => {
                                         return (
                                             <Picker.Item label={item} value={item} color={'#ffff'} key={key} />
@@ -231,9 +275,10 @@ const styles = StyleSheet.create({
     },
     closeBtn: {
         position: 'absolute',
-        left: 15,
-        top: 25,
-        backgroundColor: 'rgba(0,0,0,0)'
+        top: 20,
+        backgroundColor: 'rgba(0,0,0,0.2)',
+        paddingRight:10,
+        paddingLeft:10
     },
     itemView:{
         // height: 100,
@@ -254,14 +299,17 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 15,
         top: 25,
+        padding:10,
         backgroundColor: 'rgba(0,0,0,0)'
     },
     changeBtn:{
         position: 'absolute',
-        top: 30,
+        top: 20,
         backgroundColor: 'rgba(0,0,0,0)',
-        left: deviceWidth/2 - scaleSize(80),
-        flexDirection: 'row'
+        left: deviceWidth/2 - scaleSize(110),
+        flexDirection: 'row',
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,0.2)'
     },
     picker:{
         position: 'absolute',
@@ -280,7 +328,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const data = [
+const toData = [
     "中文",
     "日语",
     "英文",
@@ -289,4 +337,9 @@ const data = [
     "俄文",
     "葡萄牙文",
     "西班牙文"
+];
+
+const fromData = [
+    "中文",
+    "英文"
 ]

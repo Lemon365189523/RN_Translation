@@ -38,17 +38,17 @@ const btnArr = [
 export default class WordDetailsPage extends React.Component{
     
     static navigationOptions = ({ navigation, screenProps }) => ({
-        // 
-        // headerRight: (
-        //     <TouchableOpacity 
-        //         onPress={()=>{
-        //             navigation.state.params.onClickShareBtn()
-        //         }}
-        //         style={{paddingRight:10}}
-        //     >
-        //         <Ionicons name={"ios-share-outline"} size={35} color={'#ffff'} />
-        //     </TouchableOpacity>
-        // )
+        
+        headerRight: (
+            <TouchableOpacity 
+                onPress={()=>{
+                    navigation.state.params.onClickShareBtn()
+                }}
+                style={{paddingRight:10}}
+            >
+                {/*<Ionicons name={"ios-share-outline"} size={35} color={'#ffff'} />*/}
+            </TouchableOpacity>
+        )
     })
 
 
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
         marginRight: 20
     },
     scrollView:{
-        height: deviceHeight -70
+        height: deviceHeight - 70
     },
     topLeftImg:{
         position: 'absolute',
