@@ -28,7 +28,7 @@ class MainContainer extends React.Component {
     }
     render(){
         return(
-            <View>
+            <View style={{flex:1}}>
                 <StatusBar
                     backgroundColor={THEME_BG_COLOR}
                     barStyle="light-content"

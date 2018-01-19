@@ -4,10 +4,12 @@ import {
 import * as Types from '../constants/ActionTypes';
 
 
-export const translate = (resultData,toCoding) => {
+export const translate = (resultData,fromCoding ,toCoding) => {
+    console.log('=================');
+    console.log(fromCoding+ '----to---' + toCoding)
+    console.log('=================');
     return dispatch => {
         var result = resultData;
-        const language = result["language"];
         const regions = result["regions"][0];
         const lines = regions["lines"];
         var count = 0;
@@ -29,7 +31,7 @@ export const translate = (resultData,toCoding) => {
         for (let index = 0; index < lines.length; index++) {
             const element = lines[index];
             const words = element["words"];
-            YoudaoApi(words, toCoding, language).then(res => {
+            YoudaoApi(words, toCoding, fromCoding).then(res => {
                 if (res.errorCode === "0") {
                     console.log(index + "--===--" + res.query);
                     count++;

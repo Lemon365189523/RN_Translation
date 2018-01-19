@@ -79,6 +79,9 @@ export default class OCRResultPage extends Component {
     }
 
     _onClickDoneBtn(){
+        const toCodings = ["zh-CHS", "ja", "EN", "ko", "fr", "ru", "pt", "es"];
+        const fromCodings = ["zh-CHS", "EN"];
+
         if (this.selected == selected_to) {
             this.toStr = this.state.toStr;
             this.setState({
@@ -86,15 +89,21 @@ export default class OCRResultPage extends Component {
             });
             //翻译
             const { ocrResult, resultDispatch } = this.props;
-            const toIndex = data.indexOf(this.toStr);
-            const codings = ["zh-CHS", "ja", "EN", "ko", "fr", "ru", "pt", "es"];
             const resultData = this.props.navigation.state.params.resultData
-            resultDispatch.translate(resultData, codings[toIndex]);
+            const fromCoding = fromCodings[fromData.indexOf(this.fromStr)];
+            const toCoding = toCodings[toData.indexOf(this.toStr)];
+            resultDispatch.translate(resultData,fromCoding ,toCoding);
         }else if(this.selected == selected_from){
             this.fromStr = this.state.fromStr;
             this.setState({
                 showPicker: false
             });
+            //翻译
+            const { ocrResult, resultDispatch } = this.props;
+            const resultData = this.props.navigation.state.params.resultData
+            const fromCoding = fromCodings[fromData.indexOf(this.fromStr)];
+            const toCoding = toCodings[toData.indexOf(this.toStr)];
+            resultDispatch.translate(resultData, fromCoding, toCoding);
         }
 
     }
@@ -223,7 +232,14 @@ export default class OCRResultPage extends Component {
                 >
                     <TouchableOpacity
                         style={styles.changeModalView}
-                        onPress={()=>{this.setState({showPicker: false,toStr:this.toStr})}}
+                        onPress={()=>{
+                            if(this.selected == selected_to){
+                                this.setState({ showPicker: false, toStr: this.toStr })
+                            }else if(this.selected == selected_from){
+                                this.setState({ showPicker: false, fromStr: this.fromStr })
+                            }
+                            
+                        }}
                         activeOpacity={1}
                     >
                         <View style={styles.picker}>

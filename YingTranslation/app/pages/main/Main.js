@@ -232,7 +232,7 @@ class MainPage extends Component {
             <View style={styles.basicView}>
                 <View style={styles.basicViewPhonetic}>
                     <Text>美 [{usPhonetic}]</Text>
-                    <Text style={{marginLeft: 20}}>英 [{ukPhonetic}]</Text>
+                    <Text style={{marginLeft: scaleSize(20)}}>英 [{ukPhonetic}]</Text>
                 </View>
                 {explains.map((item,key) => {
                     return (
@@ -251,7 +251,7 @@ class MainPage extends Component {
         if (web.length <= 0) return null;
         return(
             <View style={styles.webView}>
-                <Text style={{marginBottom:5}}>网络释意</Text>
+                <Text style={{ marginBottom: scaleSize(20)}}>网络释意</Text>
                 {web.map((item,key)=>{
                     return (
                         <YTSpringView
@@ -268,7 +268,7 @@ class MainPage extends Component {
     render(){
 
         return (
-            <View >
+            <View style={{flex:1}}>
                 {this._renderLanguageView()}
                 <TextInput 
                     style={[styles.textInput, styles.margins]}
@@ -339,12 +339,11 @@ const styles = StyleSheet.create({
     },
     scrollView:{
         marginTop: scaleSize(30),
-        height: deviceHeight  - scaleSize(800),
-        
+        // height: deviceHeight  - scaleSize(690),
     },
     queryView:{
         backgroundColor: '#ffff',
-        padding: 10,
+        padding: scaleSize(20),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'space-between'
@@ -355,18 +354,19 @@ const styles = StyleSheet.create({
     },
     basicView: {
         backgroundColor : '#ffff',
-        marginTop: 10,
-        padding:10
+        marginTop: scaleSize(20),
+        padding: scaleSize(20)
     },
     basicViewPhonetic: {
         flex: 1,
         flexDirection: 'row',
-        paddingBottom: 10
+        paddingBottom: scaleSize(20)
     },
     webView:{
         backgroundColor: '#ffff',
-        marginTop: 10,
-        padding: 10
+        marginTop: scaleSize(20),
+        padding: scaleSize(20),
+        marginBottom: scaleSize(20),
     },
     languageView:{
         flexDirection: 'row',
@@ -376,8 +376,8 @@ const styles = StyleSheet.create({
         height: scaleSize(60)
     },
     changleLogo:{
-        width: 20,
-        height: 20
+        width: scaleSize(40),
+        height: scaleSize(40)
     },
     languageButton:{
         width: 100,

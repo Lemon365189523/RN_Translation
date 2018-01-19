@@ -115,7 +115,8 @@ const testData = {
         orientation: 'Up',
         regions: [{
             boundingBox: '12,8,583,515',
-            lines: [{
+            lines: [
+            {
                 boundingBox: '12,9,48,22',
                 words: [{
                     boundingBox: '12,9,48,22',

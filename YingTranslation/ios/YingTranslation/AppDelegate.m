@@ -45,12 +45,12 @@
   [SplashScreen show];
   
   /* 打开调试日志 */
-  [[UMSocialManager defaultManager] openLog:YES];
+//  [[UMSocialManager defaultManager] openLog:YES];
   
   /* 设置友盟appkey */
-  [[UMSocialManager defaultManager] setUmSocialAppkey:@"5a4da9fdf43e482d8800008e"];
+//  [[UMSocialManager defaultManager] setUmSocialAppkey:@"5a4da9fdf43e482d8800008e"];
   
-  [self configUSharePlatforms];
+//  [self configUSharePlatforms];
 
   return YES;
 }

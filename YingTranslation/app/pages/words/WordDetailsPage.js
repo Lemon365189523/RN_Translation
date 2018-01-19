@@ -257,7 +257,7 @@ export default class WordDetailsPage extends React.Component{
         const { info } = this.props.navigation.state.params;
     
         return (
-            <View>
+            <View style={{flex:1}}>
                 <View style={styles.headerBGView}>
                     <Surface width={deviceWidth} height={100}>
                         <Group >
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
         marginRight: 20
     },
     scrollView:{
-        height: deviceHeight - 70
+        // height: deviceHeight - 70
     },
     topLeftImg:{
         position: 'absolute',
@@ -319,7 +319,8 @@ const styles = StyleSheet.create({
     },
     threeView:{
         backgroundColor: '#ffff',
-        marginTop: 10
+        marginTop: 10,
+        marginBottom: 10
     },
     lineView:{
          height:10,
