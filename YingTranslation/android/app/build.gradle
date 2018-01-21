@@ -124,7 +124,9 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("/Users/kadfwj/Documents/YT/YingTranslation/android/app/my-release-key.keystore")
+            ///Users/kadfwj/Documents/YT/YingTranslation/android/app/my-release-key.keystore
+            ///Users/Macx/Documents/Ying-Translation/YingTranslation/android/app/my-release-key.keystore
+            storeFile file("/Users/Macx/Documents/Ying-Translation/YingTranslation/android/app/my-release-key.keystore")
             storePassword "as365189523"
             keyAlias "my-key-alias"
             keyPassword "as365189523"

@@ -46,7 +46,7 @@ export default class WordDetailsPage extends React.Component{
                 }}
                 style={{paddingRight:10}}
             >
-                {/*<Ionicons name={"ios-share-outline"} size={35} color={'#ffff'} />*/}
+                <Ionicons name={"ios-share-outline"} size={35} color={'#ffff'} />
             </TouchableOpacity>
         )
     })
@@ -354,6 +354,7 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        
     }
 })
