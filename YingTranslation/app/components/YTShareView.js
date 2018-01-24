@@ -13,6 +13,7 @@ import UShare from '../librarys/share/share'
 import { deviceHeight ,scaleSize,deviceWidth} from "../constants/ScreenUtil";
 import images from '../img';
 import {THEME_BG_COLOR} from '../constants/Colors'
+import PropTypes from 'prop-types'
 
 const viewHeight = deviceWidth/3*2;
 
@@ -47,6 +48,10 @@ const shareArr = [
 
 export default class YTShareView extends Component{
 
+    static propTypes = {
+        shareCallback: PropTypes.func
+    }
+
     constructor(props){
         super(props);
 
@@ -77,7 +82,7 @@ export default class YTShareView extends Component{
                         {this._renderShareItems()}
                     </Animated.View>
                 </TouchableOpacity>
-            </Modal>
+            </Modal> 
         )
     }
 
@@ -97,6 +102,9 @@ export default class YTShareView extends Component{
             // message:分享成功、分享失败、取消分享
             // ToastAndroid.show(message,ToastAndroid.SHORT);  
             console.log(message);
+            if(this.props.shareCallback){
+                this.props.shareCallback(message);
+            }
         });  
     }
 

@@ -17,6 +17,8 @@ import {scaleSize,onePixel,deviceWidth} from '../../constants/ScreenUtil';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Images from '../../img'
 import ocrReducer from "../../reducers/ocrReducer";
+import YTShareView from '../../components/YTShareView';
+import YTToast from '../../components/YTToast';
 
 var selected_from = 1;
 var selected_to = 2;
@@ -47,7 +49,7 @@ export default class OCRResultPage extends Component {
     }
 
     _onClickShareBtn(){
-
+        this.shareView.show();
     }
     
 
@@ -154,26 +156,36 @@ export default class OCRResultPage extends Component {
         }
         return(
             <View style={styles.container}>
-
+                {/* 显示图片全屏model */}
                 <View style={styles.headerView}>
                     <Modal 
                         visible={this.state.visible} 
                         transparent={true}
-                        onRequestClose={()=>{}}
+                        onRequestClose={()=>{
+                            this.setState({
+                                visible:false
+                            }) 
+                        }}
                     >   
                         <StatusBar 
                             backgroundColor={'black'}
                         />
                         <ImageViewer 
                             imageUrls={[{ url: "data:image/png;base64," + imageData }]} 
-                            onClick={()=>{
+                            onClick={(onCancel)=>{
+                                console.log('点击了图片');
                                 this.setState({
                                     visible:false
                                 })
                             }}
+                            saveToLocalByLongPress={false}
+                            onShowModal={()=>{
+                                console.log('onShowModal');
+                            }}
+                            maxOverflow={0}
                         />
                     </Modal>
-                    
+                    {/* 顶部图片 */}
                     <TouchableOpacity
                         onPress={this._onClickImage.bind(this)}
                         style={{ flex: 2 }}
@@ -193,14 +205,14 @@ export default class OCRResultPage extends Component {
                         <Ionicons name={"md-close"} size={35} color={'#ffff'} />
                     </TouchableOpacity>
 
-                    {/*<TouchableOpacity
+                    <TouchableOpacity
                         style={styles.shareBtn}
                         activeOpacity={0.8}
                         onPress={this._onClickShareBtn.bind(this)}
                     >
                         <Ionicons name={"ios-share-outline"} size={35} color={'#ffff'} />
-                    </TouchableOpacity>*/}
-
+                    </TouchableOpacity>
+                    
                     <View
                         style={styles.changeBtn}
                     >
@@ -208,23 +220,26 @@ export default class OCRResultPage extends Component {
                             activeOpacity={0.8}
                             onPress={this._onClickFromBtn.bind(this)}
                         >
-                            <Text style={{ color: '#ffff' }}>{this.fromStr}</Text>
+                            <Text style={styles.btnText}>{this.fromStr}</Text>
                         </TouchableOpacity>
                         <Image source={Images.change}/>
                         <TouchableOpacity
                             activeOpacity={0.8}
                             onPress={this._onClickToBtn.bind(this)}
                         >
-                            <Text style={{ color: '#ffff'}}>{this.toStr}</Text>
+                            <Text style={styles.btnText}>{this.toStr}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
+                {/* 翻译list */}
                 <FlatList
                     data={resultData.regions[0].lines}
                     renderItem={this._renderItenm.bind(this)}
                     keyExtractor={this._keyExtractors.bind(this)}
                     style={{marginTop:5}}
                 />
+
+                {/* picker */}
                 <Modal 
                     visible={this.state.showPicker}
                     transparent={true}
@@ -247,7 +262,7 @@ export default class OCRResultPage extends Component {
                                 style={styles.doneBtn}
                                 onPress={this._onClickDoneBtn.bind(this)}
                             >
-                                <Text style={{color:'#ffff',fontSize:20}}>确定</Text>
+                                <Text style={{color:THEME_BG_COLOR,fontSize:20,textAlign:'center'}}>确定</Text>
                             </TouchableOpacity>
                             <Picker
 
@@ -258,7 +273,12 @@ export default class OCRResultPage extends Component {
                                     
                                     data.map((item, key) => {
                                         return (
-                                            <Picker.Item label={item} value={item} color={'#ffff'} key={key} />
+                                            <Picker.Item 
+                                                label={item} 
+                                                value={item} 
+                                                color={THEME_BG_COLOR} 
+                                                key={key}
+                                             />
                                         )
                                     })
                                 }
@@ -268,7 +288,15 @@ export default class OCRResultPage extends Component {
 
                     </TouchableOpacity>
                 </Modal>
- 
+                <YTShareView 
+                    ref={shareView => {this.shareView=shareView} }
+                    shareCallback={(message)=>{
+                        this.toast.show(message);
+                    }}
+                />
+                <YTToast 
+                    ref = {toast => {this.toast = toast}}
+                />
             </View>
 
         )
@@ -291,7 +319,7 @@ const styles = StyleSheet.create({
     },
     closeBtn: {
         position: 'absolute',
-        top: 20,
+        top: 30,
         backgroundColor: 'rgba(0,0,0,0.2)',
         paddingRight:10,
         paddingLeft:10
@@ -313,18 +341,19 @@ const styles = StyleSheet.create({
     },
     shareBtn:{
         position: 'absolute',
-        right: 15,
-        top: 25,
-        padding:10,
-        backgroundColor: 'rgba(0,0,0,0)'
+        right: 0,
+        top: 30,
+        paddingLeft:10,
+        paddingRight:10,
+        backgroundColor: 'rgba(0,0,0,0.2)'
     },
     changeBtn:{
         position: 'absolute',
-        top: 20,
+        top: 30,
         backgroundColor: 'rgba(0,0,0,0)',
         left: deviceWidth/2 - scaleSize(110),
         flexDirection: 'row',
-        padding: 10,
+        padding: 8,
         backgroundColor: 'rgba(0,0,0,0.2)'
     },
     picker:{
@@ -332,7 +361,7 @@ const styles = StyleSheet.create({
         bottom:0,
         left:0,
         right:0,
-        backgroundColor: THEME_BG_COLOR
+        backgroundColor: '#ffff'
     },
     changeModalView:{
         flex: 1,
@@ -341,6 +370,11 @@ const styles = StyleSheet.create({
     doneBtn:{
         padding:10,
         flex: 1
+    },
+    btnText:{
+        color: '#ffff',
+        marginLeft: 5,
+        marginRight: 5
     }
 });
 

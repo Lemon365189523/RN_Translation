@@ -37,3 +37,15 @@
 ├───────────────────────────────────────────────────────────────────────────────┤
 │ Staging    │ n4y-sxoQHiysgURL7unE1bTut9YQ3e570e6d-1756-4fea-ac2a-83ad60454c8e │
 └───────────────────────────────────────────────────────────────────────────────┘
+
+
+##安卓真机调试
+```
+adb kill-server
+
+adb start-server
+
+adb reverse tcp:8081 tcp:8081
+
+adb shell input keyevent 82
+```

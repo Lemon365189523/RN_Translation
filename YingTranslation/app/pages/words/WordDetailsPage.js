@@ -14,6 +14,7 @@ import Imgs from '../../img';
 import YTSpringView from '../../components/YTSpringView';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import YTShareView from '../../components/YTShareView';
+import YTToast from '../../components/YTToast';
 const { Surface, Shape, Path, Group} = ART;
 
 
@@ -277,6 +278,12 @@ export default class WordDetailsPage extends React.Component{
                 </ScrollView>
                 <YTShareView 
                     ref={shareView => {this.shareView=shareView} }
+                    shareCallback={(message)=>{
+                        this.toast.show(message);
+                    }}
+                />
+                <YTToast 
+                    ref={toast => {this.toast = toast}}
                 />
             </View>
         )

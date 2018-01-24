@@ -31,7 +31,7 @@ export default class OCRPage extends Component {
             this.toast.show(errMsg,2500);
         });
         this.subscription2 = DeviceEventEmitter.addListener('PushOCRResultPage', ()=>{
-            console.log(this.props);
+            // console.log('data:'+this.imageData);
             const { data} = this.props.ocr;
             
             this.props.navigation.navigate('OCRResult', { imageData: this.imageData, resultData: data });
@@ -53,7 +53,7 @@ export default class OCRPage extends Component {
     _openPicker(){
         var options = {
             includeBase64: true,
-            compressImageQuality: 0.6, //压缩图片的质量 0~1
+            compressImageQuality: 0.7, //压缩图片的质量 0~1
             compressVideoPreset: "",
             cropping: false //是否打开裁剪
         };
@@ -75,12 +75,12 @@ export default class OCRPage extends Component {
         console.log("点击拍照")
         const { ocrDispatch,ocr } = this.props;
         console.log(this.camera);
-        this.camera.capture({ jpegQuality: 0 })
-            .then(function (data) {
+        this.camera.capture({ jpegQuality: 70 })
+            .then( image => {
                 console.log("拍照成功！图片保存地"  );
-                console.log(data);
-                this.imageData = data;
-                ocrDispatch.OCRTranslate(data);
+                this.imageData = image.data;
+                // console.log('data:'+image.data);
+                ocrDispatch.OCRTranslate(image.data);
             })
             .catch(err => {
                 console.error(err);
