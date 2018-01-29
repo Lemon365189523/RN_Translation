@@ -21,7 +21,7 @@ const iosStaging = 'ta1bpcPvESizun_uIkDVJ1YSGGMg3e570e6d-1756-4fea-ac2a-83ad6045
 const androidProduction = '1OAyH3rFJHAuWa8eKvULh5-xDCru3e570e6d-1756-4fea-ac2a-83ad60454c8e';
 const iosProduction = 'deQ_So3Qjrx66nz2wSRtweCNpyw63e570e6d-1756-4fea-ac2a-83ad60454c8e';
 
-const deploymentKey = iosStaging;
+const deploymentKey = androidStaging;
 
 var storage = new Storage({
     // 最大容量，默认值1000条数据循环存储
@@ -44,7 +44,7 @@ global.storage = storage;
 class Root extends Component {
 
     componentDidMount(){
-        // this._cheakUpdate();
+        this._cheakUpdate();
     }
 
     

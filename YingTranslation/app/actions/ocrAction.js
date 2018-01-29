@@ -12,9 +12,7 @@ import {
 export const OCRTranslate = (img) => {
 
     return dispatch => {
-        dispatch({
-            type: Types.OCR_REQUEST_START,
-        });
+
         /* 测试 */
         setTimeout(() => {
         /* 正常 */
@@ -108,6 +106,23 @@ export const OCRTranslate = (img) => {
     }
 }
 
+export const takeImage = () => {
+
+    return dispatch => {
+        dispatch({
+            type: Types.OCR_REQUEST_START,
+        });
+    }
+}
+
+export const takeImageError = (message) =>{
+    return dispatch => {
+        dispatch({
+            type: Types.REQUEST_ERR,
+            errorMsg: message 
+        })
+    }  
+}
 
 const testData = {
     errorCode: '0',

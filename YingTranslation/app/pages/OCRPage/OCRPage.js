@@ -75,6 +75,7 @@ export default class OCRPage extends Component {
         console.log("点击拍照")
         const { ocrDispatch,ocr } = this.props;
         console.log(this.camera);
+        ocrDispatch.takeImage();
         this.camera.capture({ jpegQuality: 70 })
             .then( image => {
                 console.log("拍照成功！图片保存地"  );
@@ -84,7 +85,8 @@ export default class OCRPage extends Component {
             })
             .catch(err => {
                 console.error(err);
-                this.toast.show(err, 2500);
+                ocrDispatch.takeImageError('拍照失败');
+                // this.toast.show(err, 2500);
             });
     }
 

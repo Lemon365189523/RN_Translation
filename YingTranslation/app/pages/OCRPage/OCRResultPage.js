@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
         right: 0,
         top: 30,
         paddingLeft:10,
-        paddingRight:10,
+        paddingRight:8,
         backgroundColor: 'rgba(0,0,0,0.2)'
     },
     changeBtn:{
