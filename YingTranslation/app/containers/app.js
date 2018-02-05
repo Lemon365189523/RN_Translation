@@ -69,7 +69,9 @@ const StackOptions = (({navigation}) => {
     let {state} = navigation;
     //需要对navigationOptions进行深拷贝 这样才不影响到使用navigationOptions的地方
     var options = JSON.parse(JSON.stringify(navigationOptions));
-    options.headerTitle = state.params.title ;
+    if (state.params && state.params.title){
+        options.headerTitle = state.params.title ;
+    }
     // options.headerRight = headerRightView(navigation);//添加一个空view让安卓端的标题居中
     return options;
 })
@@ -99,10 +101,7 @@ const App = StackNavigator({
     },
     OCR:{
         screen: OCRContainer,
-        navigationOptions:{
-            headerTintColor: '#ffff',
-            gesturesEnabled: false,
-        }
+        navigationOptions: ({ navigation }) => StackOptions({ navigation })
     },
     OCRResult:{
         screen: OCRResultContainer,

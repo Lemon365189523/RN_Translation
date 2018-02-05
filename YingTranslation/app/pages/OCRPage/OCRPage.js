@@ -61,6 +61,7 @@ export default class OCRPage extends Component {
         ImagePicker.openPicker(
             options
         ).then(image => {
+            ocrDispatch.takeImage();
             console.log(image);
             this.imageData = image.data;
             ocrDispatch.OCRTranslate(image.data);
@@ -102,7 +103,7 @@ export default class OCRPage extends Component {
                     translucent={true}
                 />
                 
-                <View style={styles.headerView}>
+                {/* <View style={styles.headerView}>
                     <TouchableOpacity 
                         style={styles.closeBtn}
                         activeOpacity={0.8}
@@ -110,7 +111,7 @@ export default class OCRPage extends Component {
                     >
                         <Ionicons name={"md-close"} size={35} color={'#ffff'}/>
                     </TouchableOpacity>
-                </View>
+                </View> */}
 
                 <Camera
                     ref={(cam) => {

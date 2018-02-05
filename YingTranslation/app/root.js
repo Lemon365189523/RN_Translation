@@ -53,13 +53,14 @@ class Root extends Component {
         CodePush.checkForUpdate(deploymentKey).then((update) => {
             console.log('=======是否需要更新========='+ update);
             if (!update) {
-                Alert.alert("提示", "已是最新版本--", [
-                    {
-                        text: "Ok", onPress: () => {
-                            console.log("点了OK");
-                        }
-                    }
-                ]);
+                // Alert.alert("提示", "已是最新版本--", [
+                //     {
+                //         text: "Ok", onPress: () => {
+                //             console.log("点了OK");
+                //         }
+                //     }
+                // ]);
+                console.log("已是最新版本--");
             } else {
                 CodePush.sync({
                         deploymentKey: deploymentKey,

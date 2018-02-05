@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 class OCRContainer extends Component {
 
     static navigationOptions = {
-        header: null
+        // header: null
     }
 
     render(){
