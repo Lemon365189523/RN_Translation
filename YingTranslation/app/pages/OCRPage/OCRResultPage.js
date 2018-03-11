@@ -205,13 +205,13 @@ export default class OCRResultPage extends Component {
                         <Ionicons name={"md-close"} size={35} color={'#ffff'} />
                     </TouchableOpacity>
 
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         style={styles.shareBtn}
                         activeOpacity={0.8}
                         onPress={this._onClickShareBtn.bind(this)}
                     >
                         <Ionicons name={"ios-share-outline"} size={35} color={'#ffff'} />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     
                     <View
                         style={styles.changeBtn}
