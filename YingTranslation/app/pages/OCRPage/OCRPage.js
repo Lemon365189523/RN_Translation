@@ -8,7 +8,7 @@ import {
     DeviceEventEmitter
 } from "react-native";
 import ImagePicker from 'react-native-image-crop-picker';  
-import Camera from 'react-native-camera';
+import {RNCamera} from 'react-native-camera';
 import {THEME_BG_COLOR} from '../../constants/Colors';
 import {deviceWidth} from '../../constants/ScreenUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -22,7 +22,9 @@ export default class OCRPage extends Component {
     
     constructor(props){
         super(props);
-        
+        this.state = {
+            loading: false
+        }
     }
 
 
@@ -61,7 +63,6 @@ export default class OCRPage extends Component {
         ImagePicker.openPicker(
             options
         ).then(image => {
-            ocrDispatch.takeImage();
             console.log(image);
             this.imageData = image.data;
             ocrDispatch.OCRTranslate(image.data);
@@ -72,23 +73,25 @@ export default class OCRPage extends Component {
 
 
     //拍摄照片
-    _takePicture() {
-        console.log("点击拍照")
+    async _takePicture() {
         const { ocrDispatch,ocr } = this.props;
-        console.log(this.camera);
-        ocrDispatch.takeImage();
-        this.camera.capture({ jpegQuality: 70 })
-            .then( image => {
-                console.log("拍照成功！图片保存地"  );
-                this.imageData = image.data;
-                // console.log('data:'+image.data);
-                ocrDispatch.OCRTranslate(image.data);
-            })
-            .catch(err => {
+        if (this.camera) {
+            console.log("点击拍照")
+            this.setState({loading:true})
+            
+            const options = { quality: 0.5, base64: true };
+            try{
+                const data = await this.camera.takePictureAsync(options)
+                
+                this.imageData = data.base64;
+                ocrDispatch.OCRTranslate(data.base64);
+                this.setState({loading: false});
+            }catch (err){
                 console.error(err);
-                ocrDispatch.takeImageError('拍照失败');
-                // this.toast.show(err, 2500);
-            });
+                // ocrDispatch.takeImageError('拍照失败');
+                this.setState({loading: false});            }
+
+        }
     }
 
     render(){
@@ -96,14 +99,14 @@ export default class OCRPage extends Component {
         return (
             <View style={styles.container}>
                 <YTLoadingView 
-                    visible={this.props.ocr.loading}
+                    visible={this.state.loading}
                 />
                 <StatusBar 
                     backgroundColor={'rgba(0,0,0,0)'}
                     translucent={true}
                 />
                 
-                {/* <View style={styles.headerView}>
+                <View style={styles.headerView}>
                     <TouchableOpacity 
                         style={styles.closeBtn}
                         activeOpacity={0.8}
@@ -111,21 +114,17 @@ export default class OCRPage extends Component {
                     >
                         <Ionicons name={"md-close"} size={35} color={'#ffff'}/>
                     </TouchableOpacity>
-                </View> */}
+                </View>
 
-                <Camera
+                <RNCamera
                     ref={(cam) => {
                         this.camera = cam;
                     }}
                     style={styles.preview}
-                    type={Camera.constants.Type.back} //选择后置摄像头
-                    aspect={Camera.constants.Aspect.fill}
-                    captureQuality="medium"
-                    captureTarget={Camera.constants.CaptureTarget.memory}//转成base64
-                >
-                    
-                    
-                </Camera>
+                    type={RNCamera.Constants.Type.back} //选择后置摄像头
+                    // flashMode={RNCamera.Constants.FlashMode.on}
+                />
+                                    
                 <View style={styles.bottomView}>
                     <TouchableOpacity 
                         activeOpacity={0.8}

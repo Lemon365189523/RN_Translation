@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"bundle-ios": "react-native bundle --entry-file index.js --bundle-output ./ios/bundle/main.jsbundle --platform ios --assets-dest ./ios/bundle --dev fals",
+		"bundle-ios": "react-native bundle --entry-file index.js --bundle-output ./ios/bundle/main.jsbundle --platform ios --assets-dest ./ios/bundle --dev false",
 		"bundle-android": "react-native bundle --entry-file index.js --bundle-output ./android/bundle/index.android.bundle --platform android --assets-dest ./android/bundle --dev false",
 		"gradlew": "cd android && ./gradlew assembleRelease",
 		"test": "jest"
@@ -14,7 +14,7 @@
 		"prop-types": "^15.6.0",
 		"react": "16.0.0",
 		"react-native": "0.50.3",
-		"react-native-camera": "^0.12.0",
+		"react-native-camera": "^1.0.3",
 		"react-native-code-push": "^5.2.0-beta",
 		"react-native-image-crop-picker": "^0.19.1",
 		"react-native-image-zoom-viewer": "^2.0.18",

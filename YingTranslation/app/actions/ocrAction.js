@@ -14,10 +14,12 @@ export const OCRTranslate = (img) => {
     return dispatch => {
 
         /* 测试 */
-        setTimeout(() => {
+        // setTimeout(() => {
         /* 正常 */
-        // YoudaoOcrApi(img).then(resData=>{
-            let resData = JSON.parse(JSON.stringify(testData))
+        YoudaoOcrApi(img).then(resData=>{
+            //测试
+            // let resData = JSON.parse(JSON.stringify(testData))
+            //=======
             console.log('====resData====');
             console.log(resData);
             console.log('========');
@@ -80,17 +82,17 @@ export const OCRTranslate = (img) => {
                 })
             }
         /* 测试 */
-        }, 1000);
+        // }, 1000);
         /* 正常 */
-        // }).catch(err=>{
-        //     console.log('====err====');
-        //     console.log(err);
-        //     console.log('========');
-        //     dispatch({
-        //         type: Types.OCR_REQUEST_ERR,
-        //         errorMsg: '请求失败: err' + err
-        //     })
-        // })
+        }).catch(err=>{
+            console.log('====err====');
+            console.log(err);
+            console.log('========');
+            dispatch({
+                type: Types.OCR_REQUEST_ERR,
+                errorMsg: '请求失败: err' + err
+            })
+        })
         /* ------ */
 
         
@@ -106,14 +108,6 @@ export const OCRTranslate = (img) => {
     }
 }
 
-export const takeImage = () => {
-
-    return dispatch => {
-        dispatch({
-            type: Types.OCR_REQUEST_START,
-        });
-    }
-}
 
 export const takeImageError = (message) =>{
     return dispatch => {
